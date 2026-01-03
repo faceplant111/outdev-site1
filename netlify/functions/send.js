@@ -9,9 +9,9 @@ exports.handler = async function(event) {
 
     let text = "";
     if(body.type === "client"){
-      text = 🧑‍💼 Заявка на сайт\nИмя: ${body.name}\nКонтакт: ${body.contact}\nПроект: ${body.task};
+      text = Заявка на сайт\nИмя: ${body.name}\nКонтакт: ${body.contact}\nПроект: ${body.task};
     } else if(body.type === "dev"){
-      text = 👨‍💻 Заявка разработчика\nИмя: ${body.name}\nНавыки: ${body.skills}\nПортфолио: ${body.portfolio}\nКонтакт: ${body.contact};
+      text = Заявка разработчика\nИмя: ${body.name}\nНавыки: ${body.skills}\nПортфолио: ${body.portfolio}\nКонтакт: ${body.contact};
     }
 
     const url = https://api.telegram.org/bot${TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(text)};
