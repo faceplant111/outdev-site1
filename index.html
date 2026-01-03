@@ -79,34 +79,38 @@ OutDev © 2026 · Работаем по СНГ · Telegram: @OutDgtl
 <script>
 const SERVER_URL = "https://outdev1.netlify.app/.netlify/functions/send";
 
-async function sendForm(e, type){
-e.preventDefault();
-const formData = new FormData(e.target);
-const data = {};
-formData.forEach((v,k)=>data[k]=v);
-data.type = type;
+async function sendForm(e, type) {
+  e.preventDefault();
 
-try{
-const res = await fetch(SERVER_URL,{
-method:"POST",
-headers:{"Content-Type":"application/json"},
-body:JSON.stringify(data)
-});
-if(res.ok) alert("Заявка отправлена!");
-else alert("Ошибка отправки, попробуйте позже");
-e.target.reset();
-}catch(err){
-console.error(err);
-alert("Ошибка отправки, попробуйте позже");
-}
+  const formData = new FormData(e.target);
+  const data = {};
+  formData.forEach((v, k) => data[k] = v);
+  data.type = type;
+
+  try {
+    const res = await fetch(SERVER_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    });
+
+    if (res.ok) {
+      alert("Заявка отправлена!");
+      e.target.reset();
+    } else {
+      alert("Ошибка отправки, попробуйте позже");
+    }
+  } catch (err) {
+    console.error(err);
+    alert("Ошибка отправки, попробуйте позже");
+  }
 }
 
-document.getElementById("clientForm").addEventListener("submit", e=>sendForm(e,"client"));
-document.getElementById("devForm").addEventListener("submit", e=>sendForm(e,"dev"));
+// Привязка форм
+document.getElementById("clientForm").addEventListener("submit", e => sendForm(e, "client"));
+document.getElementById("devForm").addEventListener("submit", e => sendForm(e, "dev"));
 </script>
 
-</body>
-</html>
 
 
 
