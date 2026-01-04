@@ -5,20 +5,246 @@
 <title>OutDev — разработка сайтов</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-*{box-sizing:border-box;font-family:Arial,sans-serif}
-body{margin:0;background:#f5f6f8;color:#1a1a1a}
-header{padding:80px 20px;text-align:center;background:#fff;border-bottom:1px solid #e0e0e0}
-h1{font-size:42px;margin-bottom:10px}
-h2{font-size:28px;margin-bottom:20px}
-p{max-width:700px;margin:0 auto 20px;line-height:1.6;color:#555}
-.btn{display:inline-block;padding:14px 28px;margin:10px;border:1px solid #1a1a1a;background:none;color:#1a1a1a;cursor:pointer;text-decoration:none;transition:.3s}
-.btn:hover{background:#1a1a1a;color:#fff}
-section{padding:60px 20px;background:#fff;margin-bottom:10px}
-.list{max-width:700px;margin:auto}
-.list li{margin-bottom:10px}
-form{max-width:600px;margin:auto}
-input,textarea{width:100%;padding:14px;margin-bottom:15px;border:1px solid #ccc;font-size:16px}
-footer{text-align:center;padding:30px;background:#fff;border-top:1px solid #e0e0e0;font-size:14px;color:#777}
+* {
+    box-sizing: border-box;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+:root {
+    --primary: #2563eb;
+    --primary-dark: #1d4ed8;
+    --secondary: #f59e0b;
+    --dark: #1e293b;
+    --light: #f8fafc;
+    --gray: #64748b;
+    --success: #10b981;
+}
+
+body {
+    margin: 0;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    color: var(--dark);
+    line-height: 1.6;
+}
+
+/* Шапка */
+header {
+    padding: 100px 20px;
+    text-align: center;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: white;
+    border-bottom: none;
+    position: relative;
+    overflow: hidden;
+}
+
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="white" opacity="0.05"/></svg>');
+    background-size: cover;
+}
+
+h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    letter-spacing: -0.025em;
+}
+
+header p {
+    font-size: 1.25rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto 2rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Кнопки */
+.btn {
+    display: inline-block;
+    padding: 16px 32px;
+    margin: 10px;
+    background: white;
+    color: var(--primary);
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn:hover {
+    background: white;
+    color: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.3);
+}
+
+.btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transform: translateX(-100%);
+}
+
+.btn:hover::after {
+    animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+    100% { transform: translateX(100%); }
+}
+
+/* Секции */
+section {
+    padding: 80px 20px;
+    background: white;
+    margin: 30px auto;
+    max-width: 1200px;
+    border-radius: 24px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 2rem;
+    position: relative;
+    display: inline-block;
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: var(--secondary);
+    border-radius: 2px;
+}
+
+/* Списки */
+.list {
+    list-style: none;
+    padding: 0;
+    max-width: 700px;
+    margin: auto;
+}
+
+.list li {
+    padding: 20px;
+    margin-bottom: 15px;
+    background: var(--light);
+    border-left: 4px solid var(--primary);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+.list li:hover {
+    transform: translateX(10px);
+    background: white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.list li::before {
+    content: '✓';
+    color: var(--success);
+    font-weight: bold;
+    margin-right: 15px;
+    font-size: 1.2rem;
+}
+
+/* Формы */
+form {
+    max-width: 600px;
+    margin: auto;
+    background: var(--light);
+    padding: 40px;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+input, textarea {
+    width: 100%;
+    padding: 16px;
+    margin-bottom: 15px;
+    background: white;
+    border: 2px solid #e2e8f0;
+    font-size: 16px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+/* Футер */
+footer {
+    text-align: center;
+    padding: 40px 20px;
+    background: var(--dark);
+    color: white;
+    margin-top: 60px;
+    border-top: none;
+    font-size: 14px;
+}
+
+/* Карточки услуг */
+.service-card {
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    padding: 30px;
+    border-radius: 20px;
+    border-left: 5px solid #3b82f6;
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    h1 { font-size: 2.5rem; }
+    h2 { font-size: 2rem; }
+    section { 
+        padding: 40px 20px; 
+        margin: 20px 10px; 
+        border-radius: 16px;
+    }
+    .btn { 
+        width: calc(100% - 20px); 
+        margin: 5px 10px; 
+    }
+    header { padding: 60px 20px; }
+    form { padding: 20px; }
+}
 </style>
 </head>
 <body>
@@ -30,16 +256,39 @@ footer{text-align:center;padding:30px;background:#fff;border-top:1px solid #e0e0
 <a href="#dev" class="btn">Стать разработчиком</a>
 </header>
 
-<section>
-<h2 style="text-align:center;">Чем мы занимаемся</h2>
-<ul class="list">
-<li>Лендинги и сайты-визитки</li>
-<li>Корпоративные сайты</li>
-<li>Интернет-магазины</li>
-<li>Доработка и поддержка</li>
-</ul>
+<!-- Чем мы занимаемся -->
+<section class="services">
+    <h2 style="text-align:center;">Чем мы занимаемся</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 40px;">
+        
+        <div class="service-card">
+            <div style="font-size: 40px; margin-bottom: 20px;">🌐</div>
+            <h3 style="margin: 0 0 15px 0;">Лендинги</h3>
+            <p style="color: var(--gray); line-height: 1.6;">Одностраничные сайты для рекламы продукта или услуги. Быстро, эффективно, конверсионно.</p>
+        </div>
+        
+        <div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); padding: 30px; border-radius: 20px; border-left: 5px solid #f59e0b;">
+            <div style="font-size: 40px; margin-bottom: 20px;">🏢</div>
+            <h3 style="margin: 0 0 15px 0;">Корпоративные сайты</h3>
+            <p style="color: var(--gray); line-height: 1.6;">Многостраничные сайты для компаний с блогом, новостями и системой управления.</p>
+        </div>
+        
+        <div style="background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); padding: 30px; border-radius: 20px; border-left: 5px solid #10b981;">
+            <div style="font-size: 40px; margin-bottom: 20px;">🛒</div>
+            <h3 style="margin: 0 0 15px 0;">Интернет-магазины</h3>
+            <p style="color: var(--gray); line-height: 1.6;">Полноценные магазины с корзиной, оплатой и CRM-интеграцией.</p>
+        </div>
+        
+        <div style="background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%); padding: 30px; border-radius: 20px; border-left: 5px solid #8b5cf6;">
+            <div style="font-size: 40px; margin-bottom: 20px;">🔧</div>
+            <h3 style="margin: 0 0 15px 0;">Поддержка и доработки</h3>
+            <p style="color: var(--gray); line-height: 1.6;">Обновление существующих сайтов, добавление функционала, техподдержка.</p>
+        </div>
+        
+    </div>
 </section>
 
+<!-- Как мы работаем -->
 <section>
 <h2 style="text-align:center;">Как мы работаем</h2>
 <ul class="list">
@@ -51,25 +300,181 @@ footer{text-align:center;padding:30px;background:#fff;border-top:1px solid #e0e0
 </ul>
 </section>
 
-<section id="client">
-<h2 style="text-align:center;">Заявка на создание сайта</h2>
-<form id="clientForm">
-<input type="text" name="name" placeholder="Ваше имя" required>
-<input type="text" name="contact" placeholder="Telegram или Email" required>
-<textarea name="task" placeholder="Опишите ваш проект" required></textarea>
-<button class="btn" type="submit">Отправить заявку</button>
-</form>
+<!-- Преимущества -->
+<section class="advantages">
+    <h2 style="text-align:center;">Почему OutDev?</h2>
+    
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; margin-top: 40px;">
+        
+        <div style="flex: 1; min-width: 250px; text-align: center; padding: 20px;">
+            <div style="width: 80px; height: 80px; background: #dbeafe; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
+                <span style="font-size: 36px;">⚡</span>
+            </div>
+            <h3 style="color: #1e40af;">Быстро</h3>
+            <p style="color: var(--gray);">Сайт за 5-14 дней. Первый макет — через 48 часов.</p>
+        </div>
+        
+        <div style="flex: 1; min-width: 250px; text-align: center; padding: 20px;">
+            <div style="width: 80px; height: 80px; background: #fef3c7; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
+                <span style="font-size: 36px;">🛡️</span>
+            </div>
+            <h3 style="color: #92400e;">Надёжно</h3>
+            <p style="color: var(--gray);">30 дней гарантии. Исправляем баги за свой счёт.</p>
+        </div>
+        
+        <div style="flex: 1; min-width: 250px; text-align: center; padding: 20px;">
+            <div style="width: 80px; height: 80px; background: #d1fae5; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
+                <span style="font-size: 36px;">💎</span>
+            </div>
+            <h3 style="color: #065f46;">Качественно</h3>
+            <p style="color: var(--gray);">Все разработчики проходят тестовое задание + собеседование.</p>
+        </div>
+        
+        <div style="flex: 1; min-width: 250px; text-align: center; padding: 20px;">
+            <div style="width: 80px; height: 80px; background: #fce7f3; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
+                <span style="font-size: 36px;">📈</span>
+            </div>
+            <h3 style="color: #9d174d;">Выгодно</h3>
+            <p style="color: var(--gray);">Цены на 20-30% ниже студий. Прямой контакт с разработчиком.</p>
+        </div>
+        
+    </div>
 </section>
 
-<section id="dev">
-<h2 style="text-align:center;">Стать разработчиком OutDev</h2>
-<form id="devForm">
-<input type="text" name="name" placeholder="Ваше имя" required>
-<input type="text" name="skills" placeholder="Навыки / стек" required>
-<input type="text" name="portfolio" placeholder="GitHub / портфолио">
-<input type="text" name="contact" placeholder="Telegram" required>
-<button class="btn" type="submit">Оставить заявку</button>
-</form>
+<!-- Портфолио -->
+<section class="portfolio">
+    <h2 style="text-align:center;">Наши работы</h2>
+    <p style="text-align:center; max-width: 600px; margin: 0 auto 40px; color: var(--gray);">
+        Примеры сайтов, созданных нашими разработчиками
+    </p>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+        
+        <div style="border-radius: 16px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.1); background: white; transition: transform 0.3s ease;">
+            <div style="height: 200px; background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); display: flex; align-items: center; justify-content: center;">
+                <span style="color: white; font-size: 48px;">🛍️</span>
+            </div>
+            <div style="padding: 25px;">
+                <h3 style="margin: 0 0 10px 0;">Интернет-магазин косметики</h3>
+                <p style="color: var(--gray); margin-bottom: 15px; line-height: 1.6;">Полный цикл: дизайн, разработка, подключение платежей.</p>
+                <span style="background: #e0f2fe; color: #0369a1; padding: 5px 15px; border-radius: 20px; font-size: 14px;">14 дней</span>
+            </div>
+        </div>
+        
+        <div style="border-radius: 16px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.1); background: white; transition: transform 0.3s ease;">
+            <div style="height: 200px; background: linear-gradient(135deg, #10b981 0%, #34d399 100%); display: flex; align-items: center; justify-content: center;">
+                <span style="color: white; font-size: 48px;">🏢</span>
+            </div>
+            <div style="padding: 25px;">
+                <h3 style="margin: 0 0 10px 0;">Корпоративный сайт строительной компании</h3>
+                <p style="color: var(--gray); margin-bottom: 15px; line-height: 1.6;">Каталог услуг, блог, калькулятор стоимости.</p>
+                <span style="background: #d1fae5; color: #065f46; padding: 5px 15px; border-radius: 20px; font-size: 14px;">21 день</span>
+            </div>
+        </div>
+        
+        <div style="border-radius: 16px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.1); background: white; transition: transform 0.3s ease;">
+            <div style="height: 200px; background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%); display: flex; align-items: center; justify-content: center;">
+                <span style="color: white; font-size: 48px;">🎯</span>
+            </div>
+            <div style="padding: 25px;">
+                <h3 style="margin: 0 0 10px 0;">Лендинг для онлайн-курсов</h3>
+                <p style="color: var(--gray); margin-bottom: 15px; line-height: 1.6;">Высокая конверсия, интеграция с рассылкой.</p>
+                <span style="background: #fef3c7; color: #92400e; padding: 5px 15px; border-radius: 20px; font-size: 14px;">7 дней</span>
+            </div>
+        </div>
+        
+    </div>
+    
+    <div style="text-align: center; margin-top: 40px;">
+        <button class="btn" onclick="location.href='#client'" style="background: var(--primary); color: white;">
+            🚀 Хочу такой же сайт
+        </button>
+    </div>
+</section>
+
+<!-- Форма для клиентов -->
+<section id="client" style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);">
+    <div style="max-width: 600px; margin: 0 auto;">
+        <h2 style="text-align:center;">🚀 Заявка на создание сайта</h2>
+        <p style="text-align:center; color: var(--gray); margin-bottom: 30px;">
+            Заполните форму — мы свяжемся в течение 2 часов для уточнения деталей
+        </p>
+        
+        <form id="clientForm">
+            <div style="margin-bottom: 20px;">
+                <label style="display: block; margin-bottom: 8px; font-weight: 600; color: var(--dark);">
+                    👤 Ваше имя
+                </label>
+                <input type="text" name="name" placeholder="Иван Иванов" required>
+            </div>
+            
+            <div style="margin-bottom: 20px;">
+                <label style="display: block; margin-bottom: 8px; font-weight: 600; color: var(--dark);">
+                    📞 Контакт (Telegram или Email)
+                </label>
+                <input type="text" name="contact" placeholder="@username или email@example.com" required>
+            </div>
+            
+            <div style="margin-bottom: 30px;">
+                <label style="display: block; margin-bottom: 8px; font-weight: 600; color: var(--dark);">
+                    📝 Опишите ваш проект
+                </label>
+                <textarea name="task" placeholder="Например: Нужен интернет-магазин одежды на 100+ товаров с онлайн-оплатой..." required></textarea>
+            </div>
+            
+            <button class="btn" type="submit" style="background: var(--primary); color: white; width: 100%; padding: 18px; font-size: 18px; border-radius: 12px;">
+                📨 Отправить заявку
+            </button>
+            
+            <p style="text-align: center; margin-top: 20px; color: var(--gray); font-size: 14px;">
+                Нажимая кнопку, вы соглашаетесь на обработку персональных данных
+            </p>
+        </form>
+    </div>
+</section>
+
+<!-- Форма для разработчиков -->
+<section id="dev" style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);">
+    <div style="max-width: 600px; margin: 0 auto;">
+        <h2 style="text-align:center;">👨‍💻 Стать разработчиком OutDev</h2>
+        <p style="text-align:center; color: var(--gray); margin-bottom: 30px;">
+            Присоединяйся к нашей команде. Постоянный поток заказов и поддержка на всех этапах.
+        </p>
+        
+        <form id="devForm">
+            <div style="margin-bottom: 20px;">
+                <label style="display: block; margin-bottom: 8px; font-weight: 600; color: var(--dark);">
+                    👤 Ваше имя
+                </label>
+                <input type="text" name="name" placeholder="Иван Иванов" required>
+            </div>
+            
+            <div style="margin-bottom: 20px;">
+                <label style="display: block; margin-bottom: 8px; font-weight: 600; color: var(--dark);">
+                    💻 Навыки / стек технологий
+                </label>
+                <input type="text" name="skills" placeholder="HTML, CSS, JavaScript, React, PHP, WordPress..." required>
+            </div>
+            
+            <div style="margin-bottom: 20px;">
+                <label style="display: block; margin-bottom: 8px; font-weight: 600; color: var(--dark);">
+                    📁 GitHub / портфолио
+                </label>
+                <input type="text" name="portfolio" placeholder="https://github.com/username или ссылка на работы">
+            </div>
+            
+            <div style="margin-bottom: 30px;">
+                <label style="display: block; margin-bottom: 8px; font-weight: 600; color: var(--dark);">
+                    📞 Telegram
+                </label>
+                <input type="text" name="contact" placeholder="@username" required>
+            </div>
+            
+            <button class="btn" type="submit" style="background: #f59e0b; color: white; width: 100%; padding: 18px; font-size: 18px; border-radius: 12px;">
+                🚀 Оставить заявку
+            </button>
+        </form>
+    </div>
 </section>
 
 <footer>
@@ -80,36 +485,170 @@ OutDev © 2026 · Работаем по СНГ · Telegram: @OutDgtl
 const SERVER_URL = "https://outdev1.netlify.app/.netlify/functions/send";
 
 async function sendForm(e, type) {
-  e.preventDefault();
+    e.preventDefault();
 
-  const formData = new FormData(e.target);
-  const data = {};
-  formData.forEach((v, k) => data[k] = v);
-  data.type = type;
+    // Блокируем кнопку на время отправки
+    const submitBtn = e.target.querySelector('button[type="submit"]');
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = "Отправляем...";
+    submitBtn.disabled = true;
+    
+    const formData = new FormData(e.target);
+    const data = {};
+    formData.forEach((v, k) => data[k] = v);
+    data.type = type;
 
-  try {
-    const res = await fetch(SERVER_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data)
-    });
+    try {
+        const res = await fetch(SERVER_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data)
+        });
 
-    if (res.ok) {
-      alert("Заявка отправлена!");
-      e.target.reset();
-    } else {
-      alert("Ошибка отправки, попробуйте позже");
+        if (res.ok) {
+            showNotification("✅ Заявка отправлена! Свяжемся с вами в течение 24 часов.", "success");
+            e.target.reset();
+        } else {
+            showNotification("❌ Ошибка отправки. Попробуйте позже.", "error");
+        }
+    } catch (err) {
+        console.error(err);
+        showNotification("❌ Ошибка сети. Проверьте интернет.", "error");
+    } finally {
+        // Возвращаем кнопку в исходное состояние
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
     }
-  } catch (err) {
-    console.error(err);
-    alert("Ошибка отправки, попробуйте позже");
-  }
 }
 
-// Привязка форм
-document.getElementById("clientForm").addEventListener("submit", e => sendForm(e, "client"));
-document.getElementById("devForm").addEventListener("submit", e => sendForm(e, "dev"));
+// Функция для красивых уведомлений
+function showNotification(message, type) {
+    // Создаем уведомление
+    const notification = document.createElement('div');
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        padding: 15px 20px;
+        background: ${type === 'success' ? '#4CAF50' : '#f44336'};
+        color: white;
+        border-radius: 5px;
+        z-index: 1000;
+        animation: slideIn 0.3s ease;
+    `;
+    notification.textContent = message;
+    
+    // Добавляем стили для анимации
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+    `;
+    document.head.appendChild(style);
+    
+    document.body.appendChild(notification);
+    
+    // Удаляем через 4 секунды
+    setTimeout(() => {
+        notification.style.animation = 'slideOut 0.3s ease';
+        setTimeout(() => notification.remove(), 300);
+    }, 4000);
+}
+
+// Валидация форм
+function validateClientForm(form) {
+    const task = form.querySelector('[name="task"]').value;
+    if (task.length < 10) {
+        showNotification("❌ Пожалуйста, подробнее опишите проект", "error");
+        return false;
+    }
+    return true;
+}
+
+function validateDevForm(form) {
+    const skills = form.querySelector('[name="skills"]').value;
+    if (skills.length < 3) {
+        showNotification("❌ Укажите ваши навыки", "error");
+        return false;
+    }
+    return true;
+}
+
+// Назначаем обработчики с валидацией
+document.getElementById("clientForm").addEventListener("submit", function(e) {
+    if (validateClientForm(this)) {
+        sendForm(e, "client");
+    } else {
+        e.preventDefault();
+    }
+});
+
+document.getElementById("devForm").addEventListener("submit", function(e) {
+    if (validateDevForm(this)) {
+        sendForm(e, "dev");
+    } else {
+        e.preventDefault();
+    }
+});
+
+// Плавная прокрутка для якорных ссылок
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+            window.scrollTo({
+                top: targetElement.offsetTop - 80,
+                behavior: 'smooth'
+            });
+        }
+    });
+});
+
+// Анимация появления элементов при скролле
+document.addEventListener('DOMContentLoaded', function() {
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+    
+    // Анимируем все секции и карточки
+    document.querySelectorAll('section, .service-card, .portfolio-item').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(el);
+    });
+    
+    // Добавляем hover-эффекты для карточек
+    document.querySelectorAll('.service-card, .portfolio-item').forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            card.style.transform = 'translateY(-10px)';
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'translateY(0)';
+        });
+    });
+});
 </script>
+</body>
+</html>
+
 
 
 
