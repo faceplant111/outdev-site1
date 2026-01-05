@@ -22,6 +22,7 @@
             --dark-light: #334155;
             --success: #10b981;
             --warning: #f59e0b;
+            --error: #ef4444;
             --shadow: rgba(37, 99, 235, 0.15);
             --shadow-dark: rgba(0, 0, 0, 0.08);
         }
@@ -1239,6 +1240,60 @@
         }
 
 
+        /* Стили для уведомлений */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 10000;
+            animation: slideIn 0.3s ease;
+        }
+        
+        .notification-content {
+            background: var(--success);
+            color: white;
+            padding: 16px 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 300px;
+            max-width: 400px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .notification-content.error {
+            background: var(--error);
+        }
+        
+        .notification-content i {
+            font-size: 20px;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
+
+
         /* Адаптивность */
         @media (max-width: 1200px) {
             .hero-content,
@@ -1337,6 +1392,17 @@
             
             .tech-tags {
                 justify-content: center;
+            }
+            
+            .notification {
+                top: 10px;
+                right: 10px;
+                left: 10px;
+            }
+            
+            .notification-content {
+                min-width: auto;
+                max-width: 100%;
             }
         }
 
@@ -2082,305 +2148,4 @@
                         showPage(page);
                         
                         // Если есть указание на прокрутку к секции
-                        if (scrollTo) {
-                            setTimeout(() => {
-                                scrollToSection(scrollTo);
-                            }, 300);
-                        }
-                    }
-                    
-                    // Закрываем мобильное меню
-                    document.getElementById('navLinks').classList.remove('active');
-                    document.getElementById('mobileMenuBtn').innerHTML = '<i class="fas fa-bars"></i>';
-                });
-            });
-            
-            // Логотип ведет на главную
-            document.getElementById('goToHome').addEventListener('click', function() {
-                showPage('home');
-            });
-        }
-
-
-        // Инициализация мобильного меню
-        function initMobileMenu() {
-            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-            const navLinks = document.getElementById('navLinks');
-            
-            mobileMenuBtn.addEventListener('click', function() {
-                navLinks.classList.toggle('active');
-                this.innerHTML = navLinks.classList.contains('active') ? 
-                    '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
-            });
-            
-            // Закрытие меню при клике вне его
-            document.addEventListener('click', function(e) {
-                if (!navLinks.contains(e.target) && !mobileMenuBtn.contains(e.target) && navLinks.classList.contains('active')) {
-                    navLinks.classList.remove('active');
-                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-                }
-            });
-        }
-
-
-        // Инициализация ссылок в футере
-        function initFooterLinks() {
-            document.querySelectorAll('.footer-links a').forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    const page = this.getAttribute('data-page');
-                    const scrollTo = this.getAttribute('data-scroll');
-                    
-                    if (page) {
-                        showPage(page);
-                        
-                        // Если есть указание на прокрутку к секции
-                        if (scrollTo) {
-                            setTimeout(() => {
-                                scrollToSection(scrollTo);
-                            }, 300);
-                        }
-                    }
-                });
-            });
-        }
-
-
-        // Прокрутка к секции
-        function scrollToSection(sectionId) {
-            const section = document.getElementById(sectionId);
-            if (section) {
-                window.scrollTo({
-                    top: section.offsetTop - 80,
-                    behavior: 'smooth'
-                });
-            }
-        }
-
-
-        // Инициализация кнопок с прокруткой
-        document.querySelectorAll('[data-scroll]').forEach(button => {
-            button.addEventListener('click', function() {
-                const sectionId = this.getAttribute('data-scroll');
-                scrollToSection(sectionId);
-            });
-        });
-
-
-        // Инициализация форм - отправка в Telegram
-        function initForms() {
-            // Форма для клиентов
-            const clientForm = document.getElementById('clientForm');
-            if (clientForm) {
-                clientForm.addEventListener('submit', async function(e) {
-                    e.preventDefault();
-                    
-                    const submitBtn = this.querySelector('button[type="submit"]');
-                    const originalText = submitBtn.innerHTML;
-                    
-                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправка...';
-                    submitBtn.disabled = true;
-                    
-                    const formData = new FormData(this);
-                    const data = {};
-                    formData.forEach((value, key) => data[key] = value);
-                    
-                    // Определяем тип формы
-                    const formType = data.formType || 'client';
-                    
-                    try {
-                        // Отправка в Telegram
-                        const response = await sendToTelegram(data, formType);
-                        
-                        if (response.ok) {
-                            showNotification('✅ Заявка отправлена! Мы свяжемся с вами в течение 2 часов.', 'success');
-                            this.reset();
-                        } else {
-                            showNotification('❌ Ошибка отправки. Попробуйте позже.', 'error');
-                        }
-                    } catch (error) {
-                        console.error('Ошибка отправки:', error);
-                        showNotification('❌ Ошибка сети. Проверьте интернет.', 'error');
-                    } finally {
-                        submitBtn.innerHTML = originalText;
-                        submitBtn.disabled = false;
-                    }
-                });
-            }
-            
-            // Форма для разработчиков
-            const devForm = document.getElementById('devForm');
-            if (devForm) {
-                devForm.addEventListener('submit', async function(e) {
-                    e.preventDefault();
-                    
-                    const submitBtn = this.querySelector('button[type="submit"]');
-                    const originalText = submitBtn.innerHTML;
-                    
-                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправка...';
-                    submitBtn.disabled = true;
-                    
-                    const formData = new FormData(this);
-                    const data = {};
-                    formData.forEach((value, key) => data[key] = value);
-                    
-                    // Определяем тип формы
-                    const formType = data.formType || 'dev';
-                    
-                    try {
-                        // Отправка в Telegram
-                        const response = await sendToTelegram(data, formType);
-                        
-                        if (response.ok) {
-                            showNotification('✅ Заявка отправлена! Мы свяжемся с вами в течение 24 часов для обсуждения тестового задания.', 'success');
-                            this.reset();
-                        } else {
-                            showNotification('❌ Ошибка отправки. Попробуйте позже.', 'error');
-                        }
-                    } catch (error) {
-                        console.error('Ошибка отправки:', error);
-                        showNotification('❌ Ошибка сети. Проверьте интернет.', 'error');
-                    } finally {
-                        submitBtn.innerHTML = originalText;
-                        submitBtn.disabled = false;
-                    }
-                });
-            }
-        }
-
-
-        // Функция отправки данных в Telegram
-        async function sendToTelegram(data, type) {
-            const TOKEN = '8454482511:AAG8M9CkkQCqJY781iNq_0x15WqfDKclGRc';
-            const CHAT_ID = '8328043359';
-            
-            // Формируем текст сообщения
-            let text = '';
-            if (type === 'client') {
-                text = `НОВАЯ ЗАЯВКА НА САЙТ\n\nИмя: ${data.name || 'Не указано'}\nКонтакт: ${data.contact || 'Не указано'}\nТип сайта: ${data.type || 'Не указано'}\nПроект: ${data.task || 'Не указано'}\n\n${new Date().toLocaleString('ru-RU')}`;
-            } else if (type === 'dev') {
-                text = `ЗАЯВКА РАЗРАБОТЧИКА\n\nИмя: ${data.name || 'Не указано'}\nУровень: ${data.level || 'Не указано'}\nНавыки: ${data.skills || 'Не указано'}\nПортфолио: ${data.portfolio || 'Не указано'}\nTelegram: ${data.contact || 'Не указано'}\nО себе: ${data.about || 'Не указано'}\n\n${new Date().toLocaleString('ru-RU')}`;
-            }
-
-
-            // Кодируем текст для URL
-            const encodedText = encodeURIComponent(text);
-            
-            // Формируем URL для отправки
-            const telegramUrl = `https://api.telegram.org/bot${TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodedText}&parse_mode=HTML`;
-            
-            // Отправляем запрос
-            const response = await fetch(telegramUrl);
-            const result = await response.json();
-            
-            return result;
-        }
-
-
-        // Показ уведомлений
-        function showNotification(message, type) {
-            const notification = document.createElement('div');
-            notification.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                padding: 20px;
-                background: ${type === 'success' ? 'var(--success)' : '#f44336'};
-                color: white;
-                border-radius: 10px;
-                z-index: 10000;
-                box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-                animation: fadeIn 0.3s ease;
-                max-width: 400px;
-            `;
-            notification.innerHTML = `<i class="fas fa-check-circle"></i> ${message}`;
-            
-            document.body.appendChild(notification);
-            
-            // Удаляем уведомление через 5 секунд
-            setTimeout(() => {
-                notification.style.animation = 'fadeOut 0.3s ease';
-                setTimeout(() => notification.remove(), 300);
-            }, 5000);
-        }
-
-
-        // Инициализация анимаций
-        function initAnimations() {
-            // Анимация элементов при скролле
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-
-
-            const observer = new IntersectionObserver(function(entries) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, observerOptions);
-
-
-            // Анимируем карточки на активной странице
-            const activePage = document.querySelector('.page.active');
-            if (activePage) {
-                activePage.querySelectorAll('.service-card, .portfolio-item, .advantage-card, .step, .benefit-card, .tech-tag').forEach(el => {
-                    el.style.opacity = '0';
-                    el.style.transform = 'translateY(20px)';
-                    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                    observer.observe(el);
-                });
-            }
-
-
-            // Фиксация навигации при скролле
-            window.addEventListener('scroll', function() {
-                const navbar = document.querySelector('.navbar');
-                if (window.scrollY > 50) {
-                    navbar.classList.add('scrolled');
-                } else {
-                    navbar.classList.remove('scrolled');
-                }
-            });
-
-
-            // Анимация для визуальных карточек
-            const visualCards = document.querySelectorAll('.visual-card');
-            visualCards.forEach((card, index) => {
-                card.style.animationDelay = `${index * 0.2}s`;
-            });
-        }
-
-
-        // Добавляем CSS для анимаций
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes fadeOut {
-                from { opacity: 1; transform: translateX(0); }
-                to { opacity: 0; transform: translateX(100px); }
-            }
-            
-            /* Убедимся, что все интерактивные элементы кликабельны */
-            a, .btn, button, .nav-link, .service-cta, .footer-links a, .logo, .social-link {
-                cursor: pointer;
-            }
-            
-            /* Улучшаем доступность */
-            .btn:focus, button:focus, .nav-link:focus {
-                outline: 2px solid var(--primary);
-                outline-offset: 2px;
-            }
-            
-            /* Анимация появления страниц */
-            .page {
-                animation: fadeIn 0.5s ease;
-            }
-        `;
-        document.head.appendChild(style);
-    </script>
-</body>
-</html>
+                        if
