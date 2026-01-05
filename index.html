@@ -2090,62 +2090,331 @@
     </footer>
 
 
-    <script>
-        // Инициализация при загрузке страницы
-        document.addEventListener('DOMContentLoaded', function() {
-            // Устанавливаем активную страницу
-            showPage('home');
-            
-            // Инициализируем все компоненты
-            initNavigation();
-            initForms();
-            initAnimations();
-            initMobileMenu();
-            initFooterLinks();
+  <script>
+    // ========== КОНФИГУРАЦИЯ TELEGRAM ==========
+    const TELEGRAM_BOT_TOKEN = '8454482511:AAG8M9CkkQCqJY781iNq_0x15WqfDKclGRc';
+    const TELEGRAM_CHAT_ID = '8328043359';
+
+    // ========== ОСНОВНЫЕ ФУНКЦИИ ==========
+    
+    // Переключение между страницами
+    function showPage(pageId) {
+        // Скрываем все страницы
+        document.querySelectorAll('.page').forEach(page => {
+            page.classList.remove('active');
         });
+        
+        // Показываем выбранную страницу
+        const activePage = document.getElementById(pageId + 'Page');
+        if (activePage) {
+            activePage.classList.add('active');
+        }
+        
+        // Обновляем активную ссылку в навигации
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('data-page') === pageId) {
+                link.classList.add('active');
+            }
+        });
+        
+        // Прокручиваем вверх
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 
-
-        // Переключение между страницами
-        function showPage(pageId) {
-            // Скрываем все страницы
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
-            });
+    // Прокрутка к секции
+    function scrollToSection(sectionId) {
+        const section = document.getElementById(sectionId);
+        if (section) {
+            const navbarHeight = document.querySelector('.navbar').offsetHeight;
+            const sectionPosition = section.offsetTop - navbarHeight - 20;
             
-            // Показываем выбранную страницу
-            const activePage = document.getElementById(pageId + 'Page');
-            if (activePage) {
-                activePage.classList.add('active');
+            window.scrollTo({
+                top: sectionPosition,
+                behavior: 'smooth'
+            });
+        }
+    }
+
+    // Показ уведомления
+    function showNotification(message, type = 'success') {
+        // Создаем элемент уведомления
+        const notification = document.createElement('div');
+        notification.className = 'notification';
+        notification.innerHTML = `
+            <div class="notification-content ${type === 'success' ? '' : 'error'}">
+                <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
+                <span>${message}</span>
+            </div>
+        `;
+        
+        document.body.appendChild(notification);
+        
+        // Удаляем через 5 секунд
+        setTimeout(() => {
+            notification.style.animation = 'slideOut 0.3s ease';
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.parentNode.removeChild(notification);
+                }
+            }, 300);
+        }, 5000);
+    }
+
+    // Отправка данных в Telegram
+    async function sendToTelegram(data, type) {
+        try {
+            let message = '';
+            
+            if (type === 'client') {
+                message = `🎯 НОВАЯ ЗАЯВКА НА САЙТ\n\n` +
+                         `👤 Имя: ${data.name || 'Не указано'}\n` +
+                         `📞 Контакт: ${data.contact || 'Не указано'}\n` +
+                         `🌐 Тип сайта: ${data.type || 'Не указано'}\n` +
+                         `📋 Описание проекта:\n${data.task || 'Не указано'}\n\n` +
+                         `🕐 Время отправки: ${new Date().toLocaleString('ru-RU')}`;
+            } else if (type === 'dev') {
+                message = `👨‍💻 ЗАЯВКА РАЗРАБОТЧИКА\n\n` +
+                         `👤 Имя: ${data.name || 'Не указано'}\n` +
+                         `📊 Уровень: ${data.level || 'Не указано'}\n` +
+                         `🛠️ Навыки: ${data.skills || 'Не указано'}\n` +
+                         `🔗 Портфолио: ${data.portfolio || 'Не указано'}\n` +
+                         `📱 Telegram: ${data.contact || 'Не указано'}\n` +
+                         `ℹ️ О себе:\n${data.about || 'Не указано'}\n\n` +
+                         `🕐 Время отправки: ${new Date().toLocaleString('ru-RU')}`;
             }
             
-            // Обновляем активную ссылку в навигации
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('data-page') === pageId) {
-                    link.classList.add('active');
+            // Кодируем сообщение для URL
+            const encodedMessage = encodeURIComponent(message);
+            
+            // Отправляем запрос к Telegram API
+            const response = await fetch(
+                `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage?chat_id=${TELEGRAM_CHAT_ID}&text=${encodedMessage}&parse_mode=HTML`,
+                { method: 'GET' }
+            );
+            
+            const result = await response.json();
+            
+            if (result.ok) {
+                return { success: true };
+            } else {
+                console.error('Telegram API error:', result);
+                return { 
+                    success: false, 
+                    error: result.description || 'Ошибка отправки' 
+                };
+            }
+        } catch (error) {
+            console.error('Network error:', error);
+            return { 
+                success: false, 
+                error: 'Ошибка сети. Проверьте подключение к интернету.' 
+            };
+        }
+    }
+
+    // Обработка отправки формы
+    async function handleFormSubmit(form, type) {
+        // Собираем данные формы
+        const formData = new FormData(form);
+        const data = {};
+        formData.forEach((value, key) => {
+            data[key] = value;
+        });
+        
+        // Получаем кнопку отправки
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
+        
+        // Меняем состояние кнопки
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправка...';
+        submitBtn.disabled = true;
+        
+        try {
+            // Отправляем в Telegram
+            const result = await sendToTelegram(data, type);
+            
+            if (result.success) {
+                showNotification(
+                    type === 'client' 
+                        ? '✅ Заявка успешно отправлена! Мы свяжемся с вами в течение 2 часов.' 
+                        : '✅ Заявка отправлена! Мы свяжемся с вами в течение 24 часов.',
+                    'success'
+                );
+                form.reset(); // Очищаем форму
+            } else {
+                showNotification(`❌ ${result.error || 'Ошибка отправки. Попробуйте еще раз.'}`, 'error');
+            }
+        } catch (error) {
+            console.error('Form submission error:', error);
+            showNotification('❌ Произошла ошибка при отправке. Попробуйте еще раз.', 'error');
+        } finally {
+            // Восстанавливаем кнопку
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+        }
+    }
+
+    // ========== ИНИЦИАЛИЗАЦИЯ ==========
+    
+    // При загрузке страницы
+    document.addEventListener('DOMContentLoaded', function() {
+        // Показываем главную страницу
+        showPage('home');
+        
+        // Инициализация навигации
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const page = this.getAttribute('data-page');
+                const scrollTo = this.getAttribute('data-scroll');
+                
+                if (page) {
+                    showPage(page);
+                    
+                    // Прокрутка к секции после переключения страницы
+                    if (scrollTo) {
+                        setTimeout(() => {
+                            scrollToSection(scrollTo);
+                        }, 300);
+                    }
+                }
+                
+                // Закрываем мобильное меню
+                const navLinksContainer = document.getElementById('navLinks');
+                const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+                if (navLinksContainer.classList.contains('active')) {
+                    navLinksContainer.classList.remove('active');
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
                 }
             });
+        });
+        
+        // Логотип ведет на главную
+        document.getElementById('goToHome').addEventListener('click', function() {
+            showPage('home');
+        });
+        
+        // Мобильное меню
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinksContainer = document.getElementById('navLinks');
+        
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', function() {
+                navLinksContainer.classList.toggle('active');
+                this.innerHTML = navLinksContainer.classList.contains('active') 
+                    ? '<i class="fas fa-times"></i>' 
+                    : '<i class="fas fa-bars"></i>';
+            });
             
-            // Прокручиваем вверх страницы
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            
-            // Обновляем анимации для новой страницы
-            setTimeout(initAnimations, 100);
+            // Закрытие меню при клике вне его
+            document.addEventListener('click', function(e) {
+                if (!navLinksContainer.contains(e.target) && 
+                    !mobileMenuBtn.contains(e.target) && 
+                    navLinksContainer.classList.contains('active')) {
+                    navLinksContainer.classList.remove('active');
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+            });
         }
-
-
-        // Инициализация навигации
-        function initNavigation() {
-            // Обработка кликов по навигационным ссылкам
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
+        
+        // Обработка кнопок с прокруткой
+        document.querySelectorAll('[data-scroll]').forEach(button => {
+            if (!button.hasAttribute('data-page')) {
+                button.addEventListener('click', function() {
+                    const sectionId = this.getAttribute('data-scroll');
+                    scrollToSection(sectionId);
+                });
+            }
+        });
+        
+        // Обработка ссылок в футере
+        document.querySelectorAll('.footer-links a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const page = this.getAttribute('data-page');
+                const scrollTo = this.getAttribute('data-scroll');
+                
+                if (page) {
+                    showPage(page);
                     
-                    const page = this.getAttribute('data-page');
-                    const scrollTo = this.getAttribute('data-scroll');
-                    
-                    if (page) {
-                        showPage(page);
-                        
-                        // Если есть указание на прокрутку к секции
-                        if
+                    if (scrollTo) {
+                        setTimeout(() => {
+                            scrollToSection(scrollTo);
+                        }, 300);
+                    }
+                }
+            });
+        });
+        
+        // Форма для клиентов
+        const clientForm = document.getElementById('clientForm');
+        if (clientForm) {
+            clientForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                handleFormSubmit(this, 'client');
+            });
+        }
+        
+        // Форма для разработчиков
+        const devForm = document.getElementById('devForm');
+        if (devForm) {
+            devForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                handleFormSubmit(this, 'dev');
+            });
+        }
+        
+        // Анимация при скролле
+        function initAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Анимируем элементы на активной странице
+            const activePage = document.querySelector('.page.active');
+            if (activePage) {
+                activePage.querySelectorAll('.service-card, .portfolio-item, .advantage-card, .step, .benefit-card').forEach(el => {
+                    el.style.opacity = '0';
+                    el.style.transform = 'translateY(20px)';
+                    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                    observer.observe(el);
+                });
+            }
+        }
+        
+        // Инициализируем анимации
+        initAnimations();
+        
+        // Анимация при скролле навигации
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Анимация для визуальных карточек
+        const visualCards = document.querySelectorAll('.visual-card');
+        visualCards.forEach((card, index) => {
+            card.style.animationDelay = `${index * 0.2}s`;
+        });
+    });
+</script>
+       
+
