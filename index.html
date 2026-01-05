@@ -2,100 +2,41 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>OutDev — Создание сайтов под ключ и команда разработчиков</title>
+    <title>OutDev — разработка сайтов</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="OutDev - разработка сайтов под ключ. Лендинги, корпоративные сайты, интернет-магазины. Присоединяйтесь к нашей команде разработчиков.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Основные переменные и сброс */
-        :root {
-            --primary: #2563eb;
-            --primary-dark: #1d4ed8;
-            --primary-light: #3b82f6;
-            --primary-extra-light: #dbeafe;
-            --accent: #1e40af;
-            --white: #ffffff;
-            --light: #f8fafc;
-            --light-gray: #f1f5f9;
-            --gray: #64748b;
-            --dark: #1e293b;
-            --dark-light: #334155;
-            --success: #10b981;
-            --warning: #f59e0b;
-            --shadow: rgba(37, 99, 235, 0.15);
-            --shadow-dark: rgba(0, 0, 0, 0.08);
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
         }
 
-        html {
-            scroll-behavior: smooth;
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --dark: #1e293b;
+            --success: #10b981;
+            --shadow: rgba(37, 99, 235, 0.15);
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: var(--white);
+            background: #f5f6f8;
             color: var(--dark);
             line-height: 1.6;
-            overflow-x: hidden;
         }
 
-        /* Скрываем все страницы кроме активной */
-        .page {
-            display: none;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
-        }
-
-        .page.active {
-            display: block;
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Анимации */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
-        @keyframes shimmer {
-            0% { background-position: -1000px 0; }
-            100% { background-position: 1000px 0; }
-        }
-
-        /* Навигация */
         .navbar {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            padding: 18px 0;
+            background: white;
+            padding: 15px 0;
             box-shadow: 0 2px 20px var(--shadow);
-            border-bottom: 1px solid var(--light-gray);
-            transition: all 0.3s ease;
-        }
-
-        .navbar.scrolled {
-            padding: 12px 0;
-            box-shadow: 0 5px 30px var(--shadow);
+            z-index: 1000;
         }
 
         .nav-container {
@@ -108,40 +49,29 @@
         }
 
         .logo {
-            font-size: 28px;
+            font-size: 24px;
             font-weight: 800;
+            color: var(--primary);
             text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 12px;
-            color: var(--primary);
-            cursor: pointer;
+            gap: 10px;
         }
 
         .logo-icon {
-            width: 42px;
-            height: 42px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            border-radius: 10px;
+            width: 36px;
+            height: 36px;
+            background: var(--primary);
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--white);
-            font-size: 20px;
-            box-shadow: 0 4px 12px var(--shadow);
-        }
-
-        .logo-text {
-            font-weight: 800;
-        }
-
-        .logo-text span {
-            color: var(--accent);
+            color: white;
         }
 
         .nav-links {
             display: flex;
-            gap: 30px;
+            gap: 25px;
             align-items: center;
         }
 
@@ -149,865 +79,155 @@
             color: var(--dark);
             text-decoration: none;
             font-weight: 600;
-            font-size: 16px;
             padding: 8px 16px;
             border-radius: 8px;
             transition: all 0.3s ease;
-            position: relative;
-            cursor: pointer;
             background: none;
             border: none;
             font-family: inherit;
+            cursor: pointer;
+            font-size: 16px;
         }
 
         .nav-link:hover {
-            color: var(--primary);
             background: var(--light);
-        }
-
-        .nav-link.active {
-            background: var(--primary);
-            color: var(--white);
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 2px;
-            background: var(--primary);
-            transition: width 0.3s ease;
-        }
-
-        .nav-link:hover::after {
-            width: 70%;
+            color: var(--primary);
         }
 
         .nav-cta {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: var(--white) !important;
-            padding: 12px 28px !important;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px var(--shadow);
-            font-weight: 700;
+            background: var(--primary);
+            color: white !important;
+            padding: 10px 24px !important;
+            border-radius: 10px;
         }
 
         .nav-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px var(--shadow);
-            background: linear-gradient(135deg, var(--primary-dark), var(--accent));
+            background: var(--primary-dark);
         }
 
-        .mobile-menu-btn {
-            display: none;
-            font-size: 24px;
-            cursor: pointer;
-            color: var(--dark);
-            background: none;
-            border: none;
-        }
-
-        /* Общие стили для обеих страниц */
-        
-        /* Герой секция */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
+        header {
             padding: 140px 20px 80px;
-            position: relative;
-            overflow: hidden;
-            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-        }
-
-        .hero-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-        }
-
-        .hero-bg::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 800px;
-            height: 800px;
-            background: radial-gradient(circle, rgba(37, 99, 235, 0.1) 0%, transparent 70%);
-            border-radius: 50%;
-        }
-
-        .hero-bg::after {
-            content: '';
-            position: absolute;
-            bottom: -30%;
-            left: -10%;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
-            border-radius: 50%;
-        }
-
-        .hero-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-            position: relative;
-            z-index: 2;
-        }
-
-        /* Герой для разработчиков */
-        .dev-hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 140px 20px 80px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: var(--white);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .dev-hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
-        }
-
-        .dev-hero-content {
-            max-width: 1200px;
-            margin: 0 auto;
             text-align: center;
-            position: relative;
-            z-index: 2;
+            background: white;
         }
 
-        .hero-text {
-            animation: fadeIn 1s ease;
-        }
-
-        .hero-badge {
-            display: inline-block;
-            background: rgba(37, 99, 235, 0.1);
-            color: var(--primary);
-            padding: 10px 24px;
-            border-radius: 50px;
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 25px;
-            border: 1px solid rgba(37, 99, 235, 0.2);
-        }
-
-        .dev-hero-badge {
-            background: rgba(255, 255, 255, 0.2);
-            color: var(--white);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-
-        .hero-title {
-            font-size: 56px;
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 25px;
-            color: var(--dark);
-        }
-
-        .dev-hero-title {
-            font-size: 56px;
-            font-weight: 800;
+        h1 {
+            font-size: 48px;
             margin-bottom: 20px;
-            line-height: 1.1;
-            color: var(--white);
+            font-weight: 800;
         }
 
-        .hero-title span {
-            color: var(--primary);
-            position: relative;
-        }
-
-        .hero-title span::after {
-            content: '';
-            position: absolute;
-            bottom: 5px;
-            left: 0;
-            width: 100%;
-            height: 8px;
-            background: rgba(37, 99, 235, 0.2);
-            z-index: -1;
-        }
-
-        .hero-subtitle {
+        header p {
             font-size: 20px;
-            color: var(--gray);
-            margin-bottom: 40px;
-            max-width: 600px;
-            line-height: 1.6;
-        }
-
-        .dev-hero-subtitle {
-            font-size: 20px;
-            opacity: 0.9;
             max-width: 700px;
             margin: 0 auto 40px;
+            color: var(--gray);
             line-height: 1.6;
-            color: var(--white);
         }
 
-        .hero-stats {
-            display: flex;
-            gap: 30px;
-            margin-top: 50px;
-            flex-wrap: wrap;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 36px;
-            font-weight: 800;
-            color: var(--primary);
-            margin-bottom: 5px;
-            display: block;
-        }
-
-        .dev-stat-number {
-            color: var(--white);
-        }
-
-        .stat-label {
-            color: var(--gray);
-            font-size: 14px;
-        }
-
-        .dev-stat-label {
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        .hero-visual {
-            position: relative;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .visual-container {
-            position: relative;
-            width: 100%;
-            height: 450px;
-        }
-
-        .visual-card {
-            position: absolute;
-            background: var(--white);
-            border-radius: 20px;
-            box-shadow: 0 20px 50px var(--shadow);
-            padding: 30px;
-            transition: all 0.5s ease;
-            border: 1px solid var(--light-gray);
-            z-index: 1;
-        }
-
-        .visual-card:nth-child(1) {
-            top: 0;
-            left: 0;
-            width: 75%;
-            z-index: 3;
-            animation: pulse 4s infinite;
-        }
-
-        .visual-card:nth-child(2) {
-            top: 30px;
-            right: 0;
-            width: 65%;
-            z-index: 2;
-            opacity: 0.9;
-        }
-
-        .visual-card:nth-child(3) {
-            bottom: 0;
-            left: 20%;
-            width: 70%;
-            z-index: 1;
-            opacity: 0.8;
-        }
-
-        .visual-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 30px 60px var(--shadow);
-        }
-
-        .card-header {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        .card-icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            font-size: 24px;
-        }
-
-        .card-content h4 {
-            margin-bottom: 10px;
-            color: var(--dark);
-            font-size: 18px;
-        }
-
-        .card-content p {
-            font-size: 14px;
-            color: var(--gray);
-            line-height: 1.5;
-        }
-
-        /* Кнопки */
         .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            padding: 18px 36px;
+            display: inline-block;
+            padding: 16px 32px;
+            margin: 10px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 12px;
             font-size: 16px;
             font-weight: 600;
-            text-decoration: none;
-            border-radius: 12px;
-            border: none;
             cursor: pointer;
+            text-decoration: none;
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
+            box-shadow: 0 4px 15px var(--shadow);
         }
 
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: var(--white);
-            box-shadow: 0 10px 30px var(--shadow);
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px var(--shadow);
+            background: var(--primary-dark);
         }
 
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px var(--shadow);
-            background: linear-gradient(135deg, var(--primary-dark), var(--accent));
-        }
-
-        .btn-secondary {
-            background: var(--white);
+        .btn-outline {
+            background: white;
             color: var(--primary);
             border: 2px solid var(--primary);
-            box-shadow: 0 10px 30px var(--shadow);
         }
 
-        .btn-secondary:hover {
-            background: var(--light);
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px var(--shadow);
-        }
-
-        .btn-white {
-            background: var(--white);
-            color: var(--primary);
-            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
-        }
-
-        .btn-white:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(255, 255, 255, 0.3);
+        .btn-outline:hover {
             background: var(--light);
         }
 
-        .btn-outline-white {
-            background: rgba(255, 255, 255, 0.15);
-            color: var(--white);
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-        }
-
-        .btn-outline-white:hover {
-            background: rgba(255, 255, 255, 0.25);
-            transform: translateY(-3px);
-        }
-
-        /* Секции */
-        .section {
-            padding: 100px 20px;
+        section {
+            padding: 80px 20px;
             max-width: 1200px;
             margin: 0 auto;
         }
 
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-title {
-            font-size: 42px;
-            font-weight: 800;
-            margin-bottom: 20px;
-            position: relative;
-            display: inline-block;
-            color: var(--dark);
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(to right, var(--primary), var(--primary-light));
-            border-radius: 2px;
-        }
-
-        .section-subtitle {
-            font-size: 18px;
-            color: var(--gray);
-            max-width: 700px;
-            margin: 0 auto;
-            line-height: 1.6;
-        }
-
-        /* Карточки услуг */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .service-card {
-            background: var(--white);
-            border-radius: 20px;
-            padding: 40px 30px;
-            box-shadow: 0 10px 30px var(--shadow-dark);
-            transition: all 0.4s ease;
-            border: 1px solid var(--light-gray);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(to right, var(--primary), var(--primary-light));
-        }
-
-        .service-card:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 25px 50px var(--shadow);
-            border-color: var(--primary-light);
-        }
-
-        .service-icon {
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 25px;
-            color: var(--white);
-            font-size: 28px;
-            box-shadow: 0 8px 20px var(--shadow);
-        }
-
-        .service-card h3 {
-            font-size: 24px;
-            margin-bottom: 15px;
-            color: var(--dark);
-        }
-
-        .service-card p {
-            color: var(--gray);
-            margin-bottom: 20px;
-            line-height: 1.6;
-        }
-
-        .service-features {
-            list-style: none;
-            margin-top: 20px;
-        }
-
-        .service-features li {
-            padding: 8px 0;
-            color: var(--gray);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .service-features li i {
-            color: var(--success);
-            font-size: 14px;
-        }
-
-        .service-price {
-            display: inline-block;
-            margin-top: 20px;
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--primary);
-        }
-
-        .service-cta {
-            display: inline-block;
-            margin-top: 20px;
-            color: var(--primary);
-            font-weight: 600;
-            text-decoration: none;
-            border-bottom: 2px solid transparent;
-            transition: all 0.3s ease;
-            padding-bottom: 2px;
-            cursor: pointer;
-        }
-
-        .service-cta:hover {
-            border-bottom-color: var(--primary);
-        }
-
-        /* Процесс работы */
-        .process {
-            background: var(--light);
-            border-radius: 30px;
-            padding: 80px;
-            margin-top: 40px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .process::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: linear-gradient(to right, var(--primary), var(--primary-light));
-        }
-
-        .process-steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            margin-top: 40px;
-        }
-
-        .step {
-            text-align: center;
-            position: relative;
-            z-index: 2;
-        }
-
-        .step-number {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: var(--white);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            font-weight: 700;
-            margin: 0 auto 20px;
-            box-shadow: 0 10px 20px var(--shadow);
-        }
-
-        .step h4 {
-            margin-bottom: 10px;
-            color: var(--dark);
-            font-size: 18px;
-        }
-
-        .step p {
-            color: var(--gray);
-            font-size: 14px;
-            line-height: 1.5;
-        }
-
-        /* Портфолио */
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .portfolio-item {
-            background: var(--white);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 15px 40px var(--shadow-dark);
-            transition: all 0.4s ease;
-            position: relative;
-            border: 1px solid var(--light-gray);
-        }
-
-        .portfolio-item:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 25px 60px var(--shadow);
-            border-color: var(--primary-light);
-        }
-
-        .portfolio-image {
-            height: 250px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            font-size: 48px;
-        }
-
-        .portfolio-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(37, 99, 235, 0.9);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .portfolio-item:hover .portfolio-overlay {
-            opacity: 1;
-        }
-
-        .portfolio-content {
-            padding: 30px;
-        }
-
-        .portfolio-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 15px;
-        }
-
-        .tag {
-            background: var(--light);
-            color: var(--primary);
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-            border: 1px solid var(--light-gray);
-        }
-
-        /* Преимущества */
-        .advantages-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .advantage-card {
-            text-align: center;
-            padding: 30px;
-            background: var(--white);
-            border-radius: 20px;
-            box-shadow: 0 10px 30px var(--shadow-dark);
-            transition: all 0.3s ease;
-            border: 1px solid var(--light-gray);
-        }
-
-        .advantage-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px var(--shadow);
-            border-color: var(--primary-light);
-        }
-
-        .advantage-icon {
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            color: var(--white);
-            font-size: 28px;
-        }
-
-        /* Для разработчиков: Преимущества */
-        .benefits-grid {
+        .services-grid, .portfolio-grid, .benefits-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
             margin-top: 40px;
         }
 
-        .benefit-card {
-            background: var(--white);
+        .service-card, .portfolio-item, .benefit-card {
+            background: white;
             border-radius: 20px;
-            padding: 40px 30px;
-            box-shadow: 0 10px 30px var(--shadow-dark);
-            transition: all 0.4s ease;
-            border: 1px solid var(--light-gray);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            border: 1px solid #e0e0e0;
         }
 
-        .benefit-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(to right, var(--primary), var(--primary-light));
-        }
-
-        .benefit-card:hover {
+        .service-card:hover, .portfolio-item:hover, .benefit-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 40px var(--shadow);
-            border-color: var(--primary-extra-light);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
 
-        .benefit-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
-            border-radius: 20px;
+        .service-icon, .benefit-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 25px;
-            color: var(--white);
-            font-size: 32px;
-        }
-
-        /* Технологический стек */
-        .tech-stack {
-            background: var(--light-gray);
-            border-radius: 25px;
-            padding: 50px;
-            margin-top: 40px;
-            border: 1px solid var(--light-gray);
-        }
-
-        .tech-category {
-            margin-bottom: 40px;
-        }
-
-        .tech-category h3 {
-            font-size: 24px;
             margin-bottom: 20px;
-            color: var(--dark);
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            color: white;
+            font-size: 24px;
         }
 
-        .tech-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
+        h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            text-align: center;
         }
 
-        .tech-tag {
-            background: var(--white);
-            padding: 12px 24px;
-            border-radius: 12px;
-            font-weight: 600;
-            box-shadow: 0 5px 15px var(--shadow-dark);
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            border: 1px solid var(--light-gray);
-            cursor: default;
-        }
-
-        .tech-tag:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px var(--shadow);
-            background: var(--primary);
-            color: var(--white);
-            border-color: var(--primary);
-        }
-
-        /* Формы */
-        .contact-form, .dev-form {
-            background: var(--white);
-            border-radius: 25px;
-            padding: 50px;
-            box-shadow: 0 25px 60px var(--shadow-dark);
+        .section-subtitle {
+            text-align: center;
+            color: var(--gray);
             max-width: 700px;
-            margin: 0 auto;
-            border: 1px solid var(--light-gray);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .contact-form::before, .dev-form::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: linear-gradient(to right, var(--primary), var(--primary-light));
+            margin: 0 auto 40px;
+            font-size: 18px;
         }
 
         .form-group {
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
         .form-label {
             display: block;
             margin-bottom: 8px;
             font-weight: 600;
-            color: var(--dark);
-            font-size: 16px;
         }
 
         .form-control {
             width: 100%;
-            padding: 18px 20px;
-            border: 2px solid var(--light-gray);
+            padding: 16px;
+            border: 2px solid #e0e0e0;
             border-radius: 12px;
             font-size: 16px;
             transition: all 0.3s ease;
-            background: var(--white);
-            color: var(--dark);
         }
 
         .form-control:focus {
@@ -1016,12 +236,50 @@
             box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
         }
 
-        /* Футер */
-        .footer {
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .contact-form, .dev-form {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            background: var(--success);
+            color: white;
+            border-radius: 10px;
+            z-index: 10000;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            animation: slideIn 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .notification.error {
+            background: #ef4444;
+        }
+
+        footer {
             background: var(--dark);
-            color: var(--white);
-            padding: 80px 20px 30px;
-            margin-top: 100px;
+            color: white;
+            padding: 60px 20px 30px;
+            text-align: center;
         }
 
         .footer-content {
@@ -1029,208 +287,26 @@
             margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 50px;
-            margin-bottom: 50px;
-        }
-
-        .footer-section h3 {
-            font-size: 20px;
-            margin-bottom: 25px;
-            position: relative;
-            padding-bottom: 15px;
-            color: var(--white);
-        }
-
-        .footer-section h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 3px;
-            background: var(--primary);
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 12px;
-        }
-
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .footer-links a:hover {
-            color: var(--white);
-            padding-left: 5px;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .social-link {
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .social-link:hover {
-            background: var(--primary);
-            transform: translateY(-5px);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 14px;
-        }
-
-        /* Адаптивность */
-        @media (max-width: 1200px) {
-            .hero-content,
-            .nav-container {
-                max-width: 1000px;
-            }
-        }
-
-        @media (max-width: 992px) {
-            .hero-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-                gap: 40px;
-            }
-            
-            .hero-title, .dev-hero-title {
-                font-size: 42px;
-            }
-            
-            .section-title {
-                font-size: 36px;
-            }
-            
-            .process {
-                padding: 40px 20px;
-            }
-            
-            .services-grid,
-            .portfolio-grid,
-            .benefits-grid {
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            }
+            gap: 40px;
+            margin-bottom: 40px;
         }
 
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: var(--white);
-                flex-direction: column;
-                padding: 20px;
-                box-shadow: 0 10px 30px var(--shadow-dark);
-                border-top: 1px solid var(--light-gray);
-            }
-            
-            .nav-links.active {
-                display: flex;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .hero, .dev-hero {
-                padding: 120px 20px 60px;
-            }
-            
-            .hero-title, .dev-hero-title {
-                font-size: 36px;
-            }
-            
-            .hero-subtitle, .dev-hero-subtitle {
-                font-size: 18px;
-            }
-            
-            .section {
-                padding: 60px 20px;
-            }
-            
-            .contact-form, .dev-form, .tech-stack {
-                padding: 30px 20px;
-            }
-            
-            .visual-container {
-                height: 350px;
-            }
-            
-            .portfolio-grid,
-            .services-grid,
-            .benefits-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .process-steps {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .advantages-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .tech-tags {
-                justify-content: center;
-            }
+            h1 { font-size: 36px; }
+            h2 { font-size: 28px; }
+            section { padding: 60px 20px; }
+            .nav-links { display: none; }
+            .mobile-menu-btn { display: block; }
+            .contact-form, .dev-form { padding: 30px 20px; }
         }
 
-        @media (max-width: 480px) {
-            .hero-title, .dev-hero-title {
-                font-size: 32px;
-            }
-            
-            .section-title {
-                font-size: 28px;
-            }
-            
-            .process-steps,
-            .advantages-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .hero-stats {
-                flex-direction: column;
-                align-items: center;
-                gap: 20px;
-            }
-            
-            .btn {
-                width: 100%;
-                justify-content: center;
-            }
-            
-            .nav-cta {
-                width: 100%;
-                text-align: center;
-            }
+        .mobile-menu-btn {
+            display: none;
+            font-size: 24px;
+            background: none;
+            border: none;
+            color: var(--dark);
+            cursor: pointer;
         }
     </style>
 </head>
@@ -1242,7 +318,7 @@
                 <div class="logo-icon">
                     <i class="fas fa-code"></i>
                 </div>
-                <div class="logo-text">Out<span>Dev</span></div>
+                OutDev
             </div>
             
             <button class="mobile-menu-btn" id="mobileMenuBtn">
@@ -1250,19 +326,402 @@
             </button>
             
             <div class="nav-links" id="navLinks">
-                <button class="nav-link active" data-page="home"><i class="fas fa-home"></i> Главная</button>
-                <button class="nav-link" data-page="developers"><i class="fas fa-users"></i> Стать частью команды</button>
-                <button class="nav-link nav-cta" data-page="home" data-scroll="contact"><i class="fas fa-paper-plane"></i> Заказать сайт</button>
+                <button class="nav-link active" data-page="home">Главная</button>
+                <button class="nav-link" data-page="developers">Для разработчиков</button>
+                <button class="nav-link nav-cta" data-page="home" data-scroll="contact">Заказать сайт</button>
             </div>
         </div>
     </nav>
 
     <!-- Главная страница -->
     <div id="homePage" class="page active">
-        <!-- Герой секция -->
-        <section class="hero">
-            <div class="hero-bg"></div>
-            <div class="hero-content">
-                <div class="hero-text">
-                    <span class="hero-badge">🚀 Создаем сайты с 2020 года</span>
-                    <h1 class="hero-title">Разработка
+        <header>
+            <h1>OutDev — разработка сайтов под ключ</h1>
+            <p>Создаём сайты, которые продают. Подбираем разработчиков и сопровождаем проект от идеи до запуска.</p>
+            <div>
+                <button class="btn" data-scroll="contact">Заказать сайт</button>
+                <button class="btn btn-outline" data-page="developers">Стать разработчиком</button>
+            </div>
+        </header>
+
+        <section id="services">
+            <h2>Наши услуги</h2>
+            <p class="section-subtitle">Полный спектр услуг по разработке сайтов любой сложности</p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3>Лендинги</h3>
+                    <p>Одностраничные сайты для рекламы продукта или услуги с высокой конверсией.</p>
+                    <div class="service-price">от 10 000 ₽</div>
+                    <button class="btn btn-outline" data-scroll="contact">Заказать</button>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3>Корпоративные сайты</h3>
+                    <p>Многостраничные сайты для компаний с блогом, новостями и системой управления.</p>
+                    <div class="service-price">от 25 000 ₽</div>
+                    <button class="btn btn-outline" data-scroll="contact">Заказать</button>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3>Интернет-магазины</h3>
+                    <p>Полноценные магазины с корзиной, онлайн-оплатой и интеграцией с CRM.</p>
+                    <div class="service-price">от 50 000 ₽</div>
+                    <button class="btn btn-outline" data-scroll="contact">Заказать</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Заявка на создание сайта</h2>
+            <p class="section-subtitle">Оставьте заявку и получите бесплатную консультацию в течение 2 часов</p>
+            
+            <div class="contact-form">
+                <form id="clientForm">
+                    <div class="form-group">
+                        <label class="form-label">Ваше имя</label>
+                        <input type="text" class="form-control" name="name" placeholder="Иван Иванов" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Email или телефон</label>
+                        <input type="text" class="form-control" name="contact" placeholder="example@mail.ru или +7 (999) 123-45-67" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Тип сайта</label>
+                        <select class="form-control" name="type" required>
+                            <option value="">Выберите тип сайта</option>
+                            <option value="landing">Лендинг</option>
+                            <option value="corporate">Корпоративный сайт</option>
+                            <option value="shop">Интернет-магазин</option>
+                            <option value="other">Другое</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Опишите ваш проект</label>
+                        <textarea class="form-control" name="task" placeholder="Расскажите о вашем проекте, целях и пожеланиях..." required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn" style="width: 100%; padding: 18px;">
+                        <i class="fas fa-paper-plane"></i> Отправить заявку
+                    </button>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <!-- Страница для разработчиков -->
+    <div id="developersPage" class="page">
+        <section style="background: var(--primary); color: white; padding: 120px 20px; text-align: center;">
+            <h1 style="color: white;">Стать частью команды OutDev</h1>
+            <p style="font-size: 20px; max-width: 700px; margin: 0 auto 40px; opacity: 0.9;">
+                Работай над интересными проектами, развивайся профессионально и получай стабильный доход
+            </p>
+            <button class="btn" style="background: white; color: var(--primary);" data-scroll="apply">
+                <i class="fas fa-rocket"></i> Оставить заявку
+            </button>
+        </section>
+
+        <section id="apply">
+            <h2>Стать частью команды</h2>
+            <p class="section-subtitle">Заполните форму, и мы свяжемся с вами в течение 24 часов</p>
+            
+            <div class="dev-form">
+                <form id="devForm">
+                    <div class="form-group">
+                        <label class="form-label">Ваше имя</label>
+                        <input type="text" class="form-control" name="name" placeholder="Иван Иванов" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Ваш уровень</label>
+                        <select class="form-control" name="level" required>
+                            <option value="">Выберите уровень</option>
+                            <option value="junior">Junior Developer</option>
+                            <option value="middle">Middle Developer</option>
+                            <option value="senior">Senior Developer</option>
+                            <option value="designer">UI/UX Designer</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Технологии и навыки</label>
+                        <input type="text" class="form-control" name="skills" placeholder="React, Node.js, TypeScript..." required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Ссылка на портфолио или GitHub</label>
+                        <input type="text" class="form-control" name="portfolio" placeholder="https://github.com/username">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Telegram для связи</label>
+                        <input type="text" class="form-control" name="contact" placeholder="@username" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">О себе и опыте работы</label>
+                        <textarea class="form-control" name="about" placeholder="Расскажите о своем опыте и проектах..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn" style="width: 100%; padding: 18px;">
+                        <i class="fas fa-paper-plane"></i> Отправить заявку
+                    </button>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div>
+                <h3>OutDev</h3>
+                <p style="opacity: 0.8;">Создаём сайты, которые продают. Профессиональная разработка под ключ.</p>
+            </div>
+            <div>
+                <h3>Контакты</h3>
+                <p style="opacity: 0.8;">
+                    outdevdgtl@gmail.com<br>
+                    +375291916202<br>
+                    @OutDgtl
+                </p>
+            </div>
+            <div>
+                <h3>Страницы</h3>
+                <p style="opacity: 0.8;">
+                    <button class="nav-link" data-page="home" style="color: white; padding: 0; background: none;">Главная</button><br>
+                    <button class="nav-link" data-page="developers" style="color: white; padding: 0; background: none;">Для разработчиков</button>
+                </p>
+            </div>
+        </div>
+        <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px;">
+            <p>© 2024 OutDev. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Инициализация при загрузке
+        document.addEventListener('DOMContentLoaded', function() {
+            // Переключение страниц
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const page = this.getAttribute('data-page');
+                    const scrollTo = this.getAttribute('data-scroll');
+                    
+                    if (page) {
+                        // Скрываем все страницы
+                        document.querySelectorAll('.page').forEach(p => {
+                            p.classList.remove('active');
+                        });
+                        
+                        // Показываем выбранную
+                        document.getElementById(page + 'Page').classList.add('active');
+                        
+                        // Обновляем активную ссылку
+                        document.querySelectorAll('.nav-link').forEach(l => {
+                            l.classList.remove('active');
+                        });
+                        this.classList.add('active');
+                        
+                        // Прокрутка к секции если есть
+                        if (scrollTo) {
+                            setTimeout(() => {
+                                const section = document.getElementById(scrollTo);
+                                if (section) {
+                                    section.scrollIntoView({ behavior: 'smooth' });
+                                }
+                            }, 100);
+                        }
+                    }
+                    
+                    // Закрываем мобильное меню
+                    document.getElementById('navLinks').style.display = 'none';
+                    document.getElementById('mobileMenuBtn').innerHTML = '<i class="fas fa-bars"></i>';
+                });
+            });
+            
+            // Логотип ведет на главную
+            document.getElementById('goToHome').addEventListener('click', function() {
+                document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+                document.getElementById('homePage').classList.add('active');
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                document.querySelector('.nav-link[data-page="home"]').classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+            
+            // Кнопки с прокруткой
+            document.querySelectorAll('[data-scroll]').forEach(btn => {
+                if (!btn.hasAttribute('data-page')) {
+                    btn.addEventListener('click', function() {
+                        const sectionId = this.getAttribute('data-scroll');
+                        const section = document.getElementById(sectionId);
+                        if (section) {
+                            section.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    });
+                }
+            });
+            
+            // Мобильное меню
+            document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+                const navLinks = document.getElementById('navLinks');
+                if (navLinks.style.display === 'flex') {
+                    navLinks.style.display = 'none';
+                    this.innerHTML = '<i class="fas fa-bars"></i>';
+                } else {
+                    navLinks.style.display = 'flex';
+                    this.innerHTML = '<i class="fas fa-times"></i>';
+                }
+            });
+            
+            // Форма клиентов
+            document.getElementById('clientForm').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const submitBtn = this.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerHTML;
+                
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправка...';
+                submitBtn.disabled = true;
+                
+                const formData = new FormData(this);
+                const data = {};
+                formData.forEach((value, key) => data[key] = value);
+                data.type = 'client';
+                
+                try {
+                    const response = await sendToTelegram(data);
+                    
+                    if (response.ok) {
+                        showNotification('✅ Заявка отправлена! Мы свяжемся с вами в течение 2 часов.', 'success');
+                        this.reset();
+                    } else {
+                        showNotification('❌ Ошибка отправки. Попробуйте позже.', 'error');
+                    }
+                } catch (error) {
+                    console.error('Ошибка:', error);
+                    showNotification('❌ Ошибка сети. Проверьте интернет.', 'error');
+                } finally {
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                }
+            });
+            
+            // Форма разработчиков
+            document.getElementById('devForm').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const submitBtn = this.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerHTML;
+                
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправка...';
+                submitBtn.disabled = true;
+                
+                const formData = new FormData(this);
+                const data = {};
+                formData.forEach((value, key) => data[key] = value);
+                data.type = 'dev';
+                
+                try {
+                    const response = await sendToTelegram(data);
+                    
+                    if (response.ok) {
+                        showNotification('✅ Заявка отправлена! Мы свяжемся с вами в течение 24 часов.', 'success');
+                        this.reset();
+                    } else {
+                        showNotification('❌ Ошибка отправки. Попробуйте позже.', 'error');
+                    }
+                } catch (error) {
+                    console.error('Ошибка:', error);
+                    showNotification('❌ Ошибка сети. Проверьте интернет.', 'error');
+                } finally {
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                }
+            });
+            
+            // Адаптивное меню
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 768) {
+                    document.getElementById('navLinks').style.display = 'flex';
+                } else {
+                    document.getElementById('navLinks').style.display = 'none';
+                    document.getElementById('mobileMenuBtn').innerHTML = '<i class="fas fa-bars"></i>';
+                }
+            });
+        });
+
+        // Функция отправки в Telegram
+        async function sendToTelegram(data) {
+            // Твой токен и chat_id
+            const TOKEN = '8454482511:AAG8M9CkkQCqJY781iNg_Oxi5WqfDKo1GRc';
+            const CHAT_ID = '8328043359';
+            
+            // Формируем текст сообщения
+            let text = '';
+            if (data.type === 'client') {
+                text = `🧑‍💼 НОВАЯ ЗАЯВКА НА САЙТ\n\n👤 Имя: ${data.name || 'Не указано'}\n📞 Контакт: ${data.contact || 'Не указано'}\n🌐 Тип сайта: ${data.type || 'Не указано'}\n📝 Проект: ${data.task || 'Не указано'}\n\n🕐 ${new Date().toLocaleString('ru-RU')}`;
+            } else if (data.type === 'dev') {
+                text = `👨‍💻 ЗАЯВКА РАЗРАБОТЧИКА\n\n👤 Имя: ${data.name || 'Не указано'}\n🎯 Уровень: ${data.level || 'Не указано'}\n💻 Навыки: ${data.skills || 'Не указано'}\n📁 Портфолио: ${data.portfolio || 'Не указано'}\n📞 Telegram: ${data.contact || 'Не указано'}\n💬 О себе: ${data.about || 'Не указано'}\n\n🕐 ${new Date().toLocaleString('ru-RU')}`;
+            }
+            
+            // Кодируем текст для URL
+            const encodedText = encodeURIComponent(text);
+            
+            // Отправляем в Telegram
+            const telegramUrl = `https://api.telegram.org/bot${TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodedText}`;
+            
+            const response = await fetch(telegramUrl);
+            return response.json();
+        }
+
+        // Функция показа уведомлений
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `<i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i> ${message}`;
+            
+            document.body.appendChild(notification);
+            
+            // Удаляем через 5 секунд
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                setTimeout(() => notification.remove(), 300);
+            }, 5000);
+        }
+
+        // Тестовая функция для проверки бота
+        window.testBot = async function() {
+            const TOKEN = '8454482511:AAG8M9CkkQCqJY781iNg_Oxi5WqfDKo1GRc';
+            const testUrl = `https://api.telegram.org/bot${TOKEN}/getMe`;
+            
+            try {
+                const response = await fetch(testUrl);
+                const result = await response.json();
+                console.log('Проверка бота:', result);
+                
+                if (result.ok) {
+                    alert(`✅ Бот работает! Имя: ${result.result.first_name}`);
+                } else {
+                    alert(`❌ Ошибка: ${result.description}`);
+                }
+            } catch (error) {
+                alert('❌ Ошибка сети при проверке бота');
+            }
+        }
+    </script>
+</body>
+</html>
