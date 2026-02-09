@@ -1,3 +1,5 @@
+
+```html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -115,11 +117,6 @@
         border-radius: 2px;
     }
     .section-subtitle { font-size: 18px; color: var(--gray); max-width: 700px; margin: 0 auto; line-height: 1.6; }
-    .about-content { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-    .about-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 40px; }
-    .about-stat { text-align: center; padding: 20px; background: var(--light); border-radius: 15px; border: 1px solid var(--light-gray); }
-    .about-stat-number { font-size: 32px; font-weight: 800; color: var(--primary); margin-bottom: 5px; }
-    .about-stat-label { font-size: 14px; color: var(--gray); }
     .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; align-items: stretch; }
     .service-card {
         background: var(--white); border-radius: 20px; padding: 40px 30px; box-shadow: 0 10px 30px var(--shadow-dark);
@@ -135,22 +132,6 @@
     .service-card p { color: var(--gray); margin-bottom: 20px; line-height: 1.6; flex-grow: 1; }
     .service-price { display: inline-block; margin-top: 20px; font-size: 24px; font-weight: 700; color: var(--primary); }
     .service-card .btn { margin-top: auto; width: 100%; padding: 15px; font-size: 16px; }
-    .reviews-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; margin-top: 40px; }
-    .review-card {
-        background: var(--white); border-radius: 20px; padding: 40px;
-        box-shadow: 0 15px 40px var(--shadow-dark); border: 1px solid var(--light-gray);
-    }
-    .review-header { display: flex; align-items: center; gap: 20px; margin-bottom: 25px; }
-    .review-avatar {
-        width: 70px; height: 70px; border-radius: 50%;
-        background: linear-gradient(135deg, var(--primary), var(--primary-light));
-        display: flex; align-items: center; justify-content: center; color: white; font-size: 30px; font-weight: bold;
-    }
-    .review-info h4 { font-size: 20px; margin-bottom: 5px; color: var(--dark); }
-    .review-company { color: var(--primary); font-weight: 600; font-size: 14px; }
-    .review-rating { color: var(--warning); margin-top: 5px; }
-    .review-text { font-size: 16px; line-height: 1.7; color: var(--dark-light); font-style: italic; }
-    .review-date { display: block; margin-top: 20px; color: var(--gray); font-size: 14px; text-align: right; }
     .process { background: var(--light); border-radius: 30px; padding: 80px; margin-top: 40px; }
     .process-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-top: 40px; }
     .step { text-align: center; }
@@ -161,27 +142,6 @@
     }
     .step h4 { margin-bottom: 10px; color: var(--dark); font-size: 18px; }
     .step p { color: var(--gray); font-size: 14px; line-height: 1.5; }
-    .portfolio-filters { display: flex; justify-content: center; gap: 15px; margin-bottom: 40px; flex-wrap: wrap; }
-    .filter-btn {
-        padding: 10px 24px; background: var(--light); border: 1px solid var(--light-gray);
-        border-radius: 50px; cursor: pointer; font-weight: 600; transition: all 0.3s ease;
-    }
-    .filter-btn.active { background: var(--primary); color: var(--white); border-color: var(--primary); }
-    .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
-    .portfolio-item {
-        background: var(--white); border-radius: 20px; overflow: hidden; box-shadow: 0 15px 40px var(--shadow-dark);
-        transition: all 0.4s ease; border: 1px solid var(--light-gray); display: flex; flex-direction: column;
-    }
-    .portfolio-item:hover { transform: translateY(-15px); box-shadow: 0 25px 60px var(--shadow); }
-    .portfolio-image { height: 250px; width: 100%; overflow: hidden; position: relative; }
-    .portfolio-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
-    .portfolio-item:hover .portfolio-image img { transform: scale(1.05); }
-    .portfolio-content { padding: 30px; display: flex; flex-direction: column; flex-grow: 1; }
-    .portfolio-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 15px; }
-    .tag {
-        background: var(--light); color: var(--primary); padding: 6px 14px; border-radius: 20px;
-        font-size: 12px; font-weight: 600; border: 1px solid var(--light-gray);
-    }
     .advantages-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 40px; }
     .advantage-card {
         text-align: center; padding: 30px; background: var(--white); border-radius: 20px;
@@ -276,10 +236,10 @@
     }
     @media (max-width: 1200px) { .visual-card { max-width: 350px; } }
     @media (max-width: 992px) {
-        .hero-content, .about-content { grid-template-columns: 1fr; text-align: center; gap: 40px; }
+        .hero-content { grid-template-columns: 1fr; text-align: center; gap: 40px; }
         .hero-title, .dev-hero-title { font-size: 42px; }
         .section-title { font-size: 36px; }
-        .services-grid, .portfolio-grid, .benefits-grid { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+        .services-grid { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
         .process { padding: 40px 20px; } .nav-links { gap: 15px; } .visual-container { height: 450px; }
         .visual-card { position: relative; width: 100%; max-width: 100%; margin-bottom: 20px; opacity: 1; }
         .visual-card:nth-child(1), .visual-card:nth-child(2), .visual-card:nth-child(3) {
@@ -296,18 +256,17 @@
         .hero, .dev-hero { padding: 120px 20px 60px; } .hero-title, .dev-hero-title { font-size: 36px; }
         .hero-subtitle, .dev-hero-subtitle { font-size: 18px; } .section { padding: 60px 20px; }
         .contact-form, .dev-form, .tech-stack { padding: 30px 20px; } .visual-container { height: auto; }
-        .portfolio-grid, .services-grid, .benefits-grid { grid-template-columns: 1fr; }
+        .services-grid { grid-template-columns: 1fr; }
         .process-steps { grid-template-columns: repeat(2, 1fr); } .advantages-grid { grid-template-columns: repeat(2, 1fr); }
-        .about-stats { grid-template-columns: repeat(2, 1fr); } .nav-phone { justify-content: center; width: 100%; }
+        .nav-phone { justify-content: center; width: 100%; }
         .hero-stats { flex-wrap: wrap; justify-content: center; }
     }
     @media (max-width: 480px) {
         .hero-title, .dev-hero-title { font-size: 32px; } .section-title { font-size: 28px; }
-        .process-steps, .advantages-grid, .about-stats { grid-template-columns: 1fr; }
+        .process-steps, .advantages-grid { grid-template-columns: 1fr; }
         .hero-stats { flex-direction: column; align-items: center; gap: 20px; }
         .btn { width: 100%; justify-content: center; padding: 14px 20px; } .nav-cta { width: 100%; text-align: center; }
         .legal-links { flex-direction: column; gap: 10px; align-items: center; }
-        .portfolio-filters { gap: 10px; } .filter-btn { padding: 8px 16px; font-size: 14px; }
         .hero-badge, .dev-hero-badge { font-size: 12px; padding: 8px 16px; }
     }
     </style>
@@ -335,7 +294,7 @@
                 <p class="hero-subtitle">Профессиональные сайты, которые продают и привлекают клиентов. От концепции до запуска с гарантией качества и поддержкой 24/7.</p>
                 <div style="display: flex; gap: 20px; flex-wrap: wrap; margin-top: 40px;">
                     <button class="btn btn-primary" data-scroll="contact"><i class="fas fa-rocket"></i> Заказать сайт</button>
-                    <button class="btn btn-secondary" data-scroll="portfolio"><i class="fas fa-eye"></i> Посмотреть работы</button>
+                    <button class="btn btn-secondary" data-scroll="services"><i class="fas fa-eye"></i> Посмотреть услуги</button>
                 </div>
                 <div class="hero-stats">
                     <div class="stat-item"><span class="stat-number">75+</span><span class="stat-label">Успешных проектов</span></div>
@@ -361,22 +320,6 @@
             </div>
         </div>
     </section>
-    <section class="section" id="about">
-        <div class="section-header"><h2 class="section-title">О компании OutDev</h2><p class="section-subtitle">Мы создаем digital-решения, которые помогают бизнесу расти в онлайн-среде</p></div>
-        <div class="about-content">
-            <div>
-                <h3 style="font-size: 28px; margin-bottom: 20px; color: var(--dark);">Наша философия</h3>
-                <p style="color: var(--gray); margin-bottom: 20px; line-height: 1.7;">OutDev — это команда профессионалов, которые превращают ваши идеи в эффективные digital-инструменты. Мы верим, что хороший сайт должен не только выглядеть красиво, но и приносить реальную пользу бизнесу.</p>
-                <p style="color: var(--gray); margin-bottom: 20px; line-height: 1.7;">С 2020 года мы помогли более 75 компаниям из Беларуси и СНГ выйти на новый уровень с помощью современных веб-решений. Каждый наш проект — это индивидуальный подход, глубокий анализ и внимание к деталям.</p>
-                <div class="about-stats">
-                    <div class="about-stat"><div class="about-stat-number">4+</div><div class="about-stat-label">Года на рынке</div></div>
-                    <div class="about-stat"><div class="about-stat-number">15</div><div class="about-stat-label">Специалистов в команде</div></div>
-                    <div class="about-stat"><div class="about-stat-number">75+</div><div class="about-stat-label">Завершенных проектов</div></div>
-                </div>
-            </div>
-            <div><!-- Правый блок оставлен пустым --></div>
-        </div>
-    </section>
     <section class="section" id="services">
         <div class="section-header"><h2 class="section-title">Наши услуги</h2><p class="section-subtitle">Полный спектр услуг по разработке сайтов — от простых лендингов до сложных интернет-магазинов</p></div>
         <div class="services-grid">
@@ -400,26 +343,6 @@
             </div>
         </div>
     </section>
-    <section class="section" id="reviews" style="background: var(--light);">
-        <div class="section-header"><h2 class="section-title">Отзывы наших клиентов</h2><p class="section-subtitle">Что говорят те, кто уже воспользовался нашими услугами</p></div>
-        <div class="reviews-container">
-            <div class="review-card">
-                <div class="review-header"><div class="review-avatar">А</div><div><h4>Анна, владелец кофейни "Уют"</h4><div class="review-company">Минск, Беларусь</div><div class="review-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div></div></div>
-                <p class="review-text">Сайт для нашей кофейни сделали за 10 дней! Уже в первую неделю после запуска получили 15 онлайн-заказов. Команда OutDev проявила себя как настоящие профессионалы — учли все пожелания, помогли с настройкой интеграции с Яндекс.Еда.</p>
-                <span class="review-date">Май 2024</span>
-            </div>
-            <div class="review-card">
-                <div class="review-header"><div class="review-avatar">Д</div><div><h4>Дмитрий, директор "БелСтройГарант"</h4><div class="review-company">Гродно, Беларусь</div><div class="review-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div></div></div>
-                <p class="review-text">Заказывали корпоративный сайт для строительной компании. Ребята не только сделали качественный сайт с блогом и калькулятором стоимости, но и интегрировали CRM Битрикс24. Теперь все заявки автоматически попадают в отдел продаж. Очень доволен результатом!</p>
-                <span class="review-date">Апрель 2024</span>
-            </div>
-            <div class="review-card">
-                <div class="review-header"><div class="review-avatar">Е</div><div><h4>Екатерина, основатель "ЭкоКосметик"</h4><div class="review-company">Могилёв, Беларусь</div><div class="review-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div></div></div>
-                <p class="review-text">Интернет-магазин для нашей эко-косметики запустили всего за 3 недели! Интегрировали ЕРИП, карты, настроили CRM. Продажи выросли на 40% в первый же месяц. Отдельное спасибо за оперативную техническую поддержку.</p>
-                <span class="review-date">Март 2024</span>
-            </div>
-        </div>
-    </section>
     <section class="section" id="process">
         <div class="section-header"><h2 class="section-title">Как мы работаем</h2><p class="section-subtitle">Прозрачный процесс разработки с гарантией результата на каждом этапе</p></div>
         <div class="process">
@@ -430,47 +353,6 @@
                 <div class="step"><div class="step-number">4</div><h4>Программирование</h4><p>Программируем функционал, интегрируем с внешними сервисами.</p></div>
                 <div class="step"><div class="step-number">5</div><h4>Тестирование</h4><p>Тщательно тестируем сайт, исправляем ошибки, готовим к запуску.</p></div>
                 <div class="step"><div class="step-number">6</div><h4>Запуск</h4><p>Размещаем сайт на хостинге, настраиваем и передаем вам.</p></div>
-            </div>
-        </div>
-    </section>
-    <section class="section" id="portfolio">
-        <div class="section-header"><h2 class="section-title">Наши работы</h2><p class="section-subtitle">Реализованные проекты для малого и среднего бизнеса Беларуси и СНГ</p></div>
-        <div class="portfolio-filters">
-            <button class="filter-btn active" data-filter="all">Наши проекты</button>
-            <button class="filter-btn" data-filter="hotel">Отели</button>
-            <button class="filter-btn" data-filter="cafe">Кафе</button>
-            <button class="filter-btn" data-filter="fitness">Фитнес & SPA</button>
-        </div>
-        <div class="portfolio-grid">
-            <div class="portfolio-item" data-category="hotel">
-                <div class="portfolio-image"><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Comfort Hotel - сайт отеля в Минске"></div>
-                <div class="portfolio-content">
-                    <div class="portfolio-tags"><span class="tag">Корпоративный сайт</span><span class="tag">Отельный бизнес</span><span class="tag">22 дня</span></div>
-                    <h3 style="margin-bottom: 10px; color: var(--dark);">Comfort Hotel (Минск)</h3>
-                    <p style="color: var(--gray); margin-bottom: 15px; line-height: 1.6;">Современный сайт для отеля в центре Минска с онлайн-бронированием номеров, фотогалереей, виртуальным туром по отелю и системой управления бронированиями.</p>
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;"><span style="color: var(--success); font-weight: 600;">+35% онлайн-бронирований</span><span style="font-size: 14px; color: var(--gray);">Запущен в 2023</span></div>
-                    <a href="https://www.comforthotel.by/" target="_blank" class="btn" style="background: var(--primary); color: white; padding: 12px 24px; font-size: 14px; width: 100%; text-align: center; text-decoration: none; margin-top: auto;"><i class="fas fa-external-link-alt"></i> Посмотреть сайт</a>
-                </div>
-            </div>
-            <div class="portfolio-item" data-category="cafe">
-                <div class="portfolio-image"><img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1147&q=80" alt="Prime Cafe - сайт кафе"></div>
-                <div class="portfolio-content">
-                    <div class="portfolio-tags"><span class="tag">Лендинг</span><span class="tag">Ресторанный бизнес</span><span class="tag">12 дней</span></div>
-                    <h3 style="margin-bottom: 10px; color: var(--dark);">Prime Cafe (Минск)</h3>
-                    <p style="color: var(--gray); margin-bottom: 15px; line-height: 1.6;">Стильный лендинг для премиум-кафе с онлайн-меню, системой бронирования столиков, галереей интерьера и интеграцией с картами.</p>
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;"><span style="color: var(--success); font-weight: 600;">+60% онлайн-бронирований</span><span style="font-size: 14px; color: var(--gray);">Запущен в 2023</span></div>
-                    <a href="https://primecafe.by/" target="_blank" class="btn" style="background: var(--primary); color: white; padding: 12px 24px; font-size: 14px; width: 100%; text-align: center; text-decoration: none; margin-top: auto;"><i class="fas fa-external-link-alt"></i> Посмотреть сайт</a>
-                </div>
-            </div>
-            <div class="portfolio-item" data-category="fitness">
-                <div class="portfolio-image"><img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80" alt="EVO Wellness Club - премиальный фитнес и SPA клуб в Минске"></div>
-                <div class="portfolio-content">
-                    <div class="portfolio-tags"><span class="tag">Премиум сайт</span><span class="tag">Фитнес & SPA</span><span class="tag">25 дней</span></div>
-                    <h3 style="margin-bottom: 10px; color: var(--dark);">EVO Wellness Club (Минск)</h3>
-                    <p style="color: var(--gray); margin-bottom: 15px; line-height: 1.6;">Премиальный сайт для фитнес-клуба и SPA-салона в центре Минска. Включает систему онлайн-записи, детальное представление уникальных программ (пилатес, релаксация, уход), каталог клубных карт.</p>
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;"><span style="color: var(--success); font-weight: 600;">+40% онлайн-записей</span><span style="font-size: 14px; color: var(--gray);">Запущен в 2024</span></div>
-                    <a href="https://evo-club.by/" target="_blank" class="btn" style="background: var(--primary); color: white; padding: 12px 24px; font-size: 14px; width: 100%; text-align: center; text-decoration: none; margin-top: auto;"><i class="fas fa-external-link-alt"></i> Посмотреть сайт</a>
-                </div>
             </div>
         </div>
     </section>
@@ -488,296 +370,4 @@
         <div class="contact-form">
             <form id="clientForm">
                 <div class="form-group"><label class="form-label required">👤 Ваше имя</label><input type="text" class="form-control" name="name" placeholder="Иван Иванов" required></div>
-                <div class="form-group"><label class="form-label required">📞 Телефон для связи</label><input type="tel" class="form-control" name="contact" placeholder="+375 (29) 123-45-67" required></div>
-                <div class="form-group"><label class="form-label">💡 Опишите ваш проект (необязательно)</label><textarea class="form-control" name="task" rows="3" placeholder="Расскажите о вашем проекте..."></textarea></div>
-                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 18px; font-size: 18px;"><i class="fas fa-paper-plane"></i> Отправить заявку</button>
-                <p style="text-align: center; margin-top: 20px; color: var(--gray); font-size: 14px;">Нажимая кнопку, вы соглашаетесь с обработкой персональных данных</p>
-            </form>
-        </div>
-    </section>
-</div>
-<div id="developersPage" class="page">
-    <section class="dev-hero">
-        <div class="dev-hero-content">
-            <span class="hero-badge dev-hero-badge">🚀 Присоединяйся к команде</span>
-            <h1 class="dev-hero-title">Стань частью команды OutDev</h1>
-            <p class="dev-hero-subtitle">Работай над интересными проектами, развивайся профессионально и получай стабильный доход. Мы ищем талантливых разработчиков для создания сайтов под ключ.</p>
-            <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 50px;">
-                <button class="btn" style="background: var(--white); color: var(--primary);" data-scroll="apply"><i class="fas fa-rocket"></i> Оставить заявку</button>
-                <button class="btn" style="background: rgba(255, 255, 255, 0.15); color: var(--white); border: 2px solid rgba(255, 255, 255, 0.3);" data-scroll="benefits"><i class="fas fa-star"></i> Узнать о преимуществах</button>
-            </div>
-            <div style="display: flex; justify-content: center; gap: 40px; margin-top: 80px; flex-wrap: wrap;">
-                <div style="text-align: center;"><h3 class="stat-number dev-stat-number">30+</h3><p class="stat-label dev-stat-label">Разработчиков в команде</p></div>
-                <div style="text-align: center;"><h3 class="stat-number dev-stat-number">75+</h3><p class="stat-label dev-stat-label">Проектов в работе</p></div>
-                <div style="text-align: center;"><h3 class="stat-number dev-stat-number">85%</h3><p class="stat-label dev-stat-label">Разработчиков с нами 2+ года</p></div>
-            </div>
-        </div>
-    </section>
-    <section class="section" id="benefits">
-        <div class="section-header"><h2 class="section-title">Почему разработчики выбирают OutDev?</h2><p class="section-subtitle">Создаем комфортные условия для роста и профессионального развития</p></div>
-        <div class="benefits-grid">
-            <div class="benefit-card"><div class="benefit-icon"><i class="fas fa-money-bill-wave"></i></div><h3>Стабильный доход</h3><p>Постоянный поток заказов, своевременные выплаты, прозрачная система расчетов и бонусы за качественную работу</p></div>
-            <div class="benefit-card"><div class="benefit-icon"><i class="fas fa-chart-line"></i></div><h3>Профессиональный рост</h3><p>Разнообразные проекты, менторство от опытных коллег, участие в конференциях за счет компании и курсы повышения квалификации</p></div>
-            <div class="benefit-card"><div class="benefit-icon"><i class="fas fa-calendar-alt"></i></div><h3>Гибкий график</h3><p>Удаленная работа, свободный график, можно совмещать с основной работой или учебой. Главное — качество и сроки</p></div>
-            <div class="benefit-card"><div class="benefit-icon"><i class="fas fa-users"></i></div><h3>Поддержка команды</h3><p>Наставник на каждом проекте, помощь коллег, регулярные код-ревью, обмен опытом и совместные мозговые штурмы</p></div>
-            <div class="benefit-card"><div class="benefit-icon"><i class="fas fa-graduation-cap"></i></div><h3>Обучение за счет компании</h3><p>Курсы, воркшопы, подписки на профессиональные ресурсы, доступ к библиотеке книг и обучающим материалам</p></div>
-            <div class="benefit-card"><div class="benefit-icon"><i class="fas fa-trophy"></i></div><h3>Карьерный рост</h3><p>Прозрачная система грейдов, возможность стать тимлидом или ментором, участие в прибыли от проектов</p></div>
-        </div>
-    </section>
-    <section class="section" style="background: var(--light);">
-        <div class="section-header"><h2 class="section-title">Наш технологический стек</h2><p class="section-subtitle">Работаем с современными технологиями и инструментами</p></div>
-        <div class="tech-stack">
-            <div class="tech-category">
-                <h3><i class="fas fa-desktop" style="color: var(--primary);"></i> Frontend</h3>
-                <div class="tech-tags">
-                    <span class="tech-tag"><i class="fab fa-react"></i> React</span>
-                    <span class="tech-tag"><i class="fab fa-vuejs"></i> Vue.js</span>
-                    <span class="tech-tag"><i class="fab fa-js"></i> TypeScript</span>
-                    <span class="tech-tag"><i class="fas fa-bolt"></i> Next.js</span>
-                    <span class="tech-tag"><i class="fab fa-css3-alt"></i> Tailwind CSS</span>
-                </div>
-            </div>
-            <div class="tech-category">
-                <h3><i class="fas fa-server" style="color: var(--primary);"></i> Backend</h3>
-                <div class="tech-tags">
-                    <span class="tech-tag"><i class="fab fa-node-js"></i> Node.js</span>
-                    <span class="tech-tag"><i class="fab fa-python"></i> Python</span>
-                    <span class="tech-tag"><i class="fab fa-php"></i> PHP</span>
-                    <span class="tech-tag"><i class="fas fa-database"></i> MySQL</span>
-                    <span class="tech-tag"><i class="fas fa-leaf"></i> MongoDB</span>
-                </div>
-            </div>
-            <div class="tech-category">
-                <h3><i class="fas fa-mobile-alt" style="color: var(--primary);"></i> Mobile & CMS</h3>
-                <div class="tech-tags">
-                    <span class="tech-tag"><i class="fab fa-react"></i> React Native</span>
-                    <span class="tech-tag"><i class="fab fa-wordpress"></i> WordPress</span>
-                    <span class="tech-tag"><i class="fas fa-shopping-cart"></i> Shopify</span>
-                    <span class="tech-tag"><i class="fas fa-cube"></i> WooCommerce</span>
-                    <span class="tech-tag"><i class="fas fa-paint-brush"></i> Figma</span>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="section" id="apply">
-        <div class="section-header"><h2 class="section-title">Стать частью команды</h2><p class="section-subtitle">Заполните форму, и мы свяжемся с вами в течение 24 часов</p></div>
-        <div class="dev-form">
-            <form id="devForm">
-                <div class="form-group"><label class="form-label required">👤 Ваше имя</label><input type="text" class="form-control" name="name" placeholder="Иван Иванов" required></div>
-                <div class="form-group"><label class="form-label required">📞 Телефон для связи</label><input type="tel" class="form-control" name="contact" placeholder="+375 (29) 123-45-67" required></div>
-                <div class="form-group"><label class="form-label required">💻 Ваш уровень и специализация</label>
-                    <select class="form-control" name="level" required>
-                        <option value="">Выберите уровень</option>
-                        <option value="junior">Junior Frontend Developer</option>
-                        <option value="middle">Middle Frontend Developer</option>
-                        <option value="senior">Senior Frontend Developer</option>
-                        <option value="junior-backend">Junior Backend Developer</option>
-                        <option value="middle-backend">Middle Backend Developer</option>
-                        <option value="senior-backend">Senior Backend Developer</option>
-                        <option value="fullstack">Fullstack Developer</option>
-                        <option value="designer">UI/UX Designer</option>
-                    </select>
-                </div>
-                <div class="form-group"><label class="form-label required">🛠️ Технологии и навыки</label><input type="text" class="form-control" name="skills" placeholder="React, Node.js, MongoDB, TypeScript..." required></div>
-                <div class="form-group"><label class="form-label">📁 Ссылка на портфолио или GitHub (необязательно)</label><input type="text" class="form-control" name="portfolio" placeholder="https://github.com/username или ссылка на работы"></div>
-                <div class="form-group"><label class="form-label">💬 О себе и опыте работы (необязательно)</label><textarea class="form-control" name="about" rows="3" placeholder="Расскажите о своем опыте, проектах и ожиданиях от работы..."></textarea></div>
-                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 18px; font-size: 18px;"><i class="fas fa-paper-plane"></i> Отправить заявку</button>
-                <p style="text-align: center; margin-top: 20px; color: var(--gray); font-size: 14px;">После отправки формы мы свяжемся с вами для обсуждения тестового задания</p>
-            </form>
-        </div>
-    </section>
-</div>
-<footer class="footer">
-    <div class="footer-content">
-        <div class="footer-section">
-            <h3>OutDev</h3>
-            <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 20px; line-height: 1.6;">Создаём сайты, которые продают. Профессиональная разработка под ключ с гарантией результата.</p>
-            <div class="social-links"><a href="https://t.me/OutDgtl" class="social-link" target="_blank"><i class="fab fa-telegram"></i></a></div>
-        </div>
-        <div class="footer-section">
-            <h3>Страницы</h3>
-            <ul class="footer-links">
-                <li><a href="#" data-page="home">Главная</a></li>
-                <li><a href="#" data-page="home" data-scroll="services">Услуги</a></li>
-                <li><a href="#" data-page="home" data-scroll="portfolio">Портфолио</a></li>
-                <li><a href="#" data-page="home" data-scroll="reviews">Отзывы</a></li>
-                <li><a href="#" data-page="developers">Для разработчиков</a></li>
-            </ul>
-        </div>
-        <div class="footer-section">
-            <h3>Контакты</h3>
-            <ul class="footer-links">
-                <li><a href="mailto:outdevdgtl@gmail.com"><i class="fas fa-envelope"></i> outdevdgtl@gmail.com</a></li>
-                <li><a href="tel:+375291916202"><i class="fas fa-phone"></i> +375 (29) 191-62-02</a></li>
-                <li><a href="tel:+375336516943"><i class="fas fa-phone"></i> +375 (33) 651-69-43</a></li>
-                <li><a href="https://t.me/OutDgtl" target="_blank"><i class="fab fa-telegram"></i> @OutDgtl</a></li>
-                <li><i class="fas fa-map-marker-alt"></i> Работаем по всему СНГ</li>
-                <li><i class="fas fa-clock"></i> Пн-Пт: 9:00-20:00</li>
-            </ul>
-        </div>
-    </div>
-    <div class="footer-bottom">
-        <p>© 2024 OutDev. Все права защищены.</p>
-        <div class="legal-links">
-            <a href="#">Политика конфиденциальности</a>
-            <a href="#">Договор-оферта</a>
-            <a href="#">Пользовательское соглашение</a>
-        </div>
-    </div>
-</footer>
-<script>
-const BOT_TOKEN = '8454482511:AAG8M9CkkQCqJY781iNg_Oxi5WqfDKo1GRc';
-const CHAT_ID = '8328043359';
-function showPage(pageId) {
-    document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
-    const activePage = document.getElementById(pageId + 'Page');
-    if (activePage) activePage.classList.add('active');
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('data-page') === pageId) link.classList.add('active');
-    });
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-function scrollToSection(sectionId) {
-    const section = document.getElementById(sectionId);
-    if (section) window.scrollTo({ top: section.offsetTop - 80, behavior: 'smooth' });
-}
-function showNotification(message, isError = false) {
-    const notification = document.createElement('div');
-    notification.className = `notification ${isError ? 'error' : ''}`;
-    notification.innerHTML = `<i class="fas fa-${isError ? 'exclamation-circle' : 'check-circle'}"></i><span>${message}</span>`;
-    document.body.appendChild(notification);
-    setTimeout(() => { notification.remove(); }, 5000);
-}
-async function sendToTelegram(data, isDeveloper = false) {
-    try {
-        let message = '';
-        if (isDeveloper) {
-            message = `👨‍💻 НОВАЯ ЗАЯВКА ОТ РАЗРАБОТЧИКА\n\n👤 Имя: ${data.name}\n📞 Телефон: ${data.contact}\n📊 Уровень: ${data.level}\n🛠️ Навыки: ${data.skills}\n📁 Портфолио: ${data.portfolio || 'не указано'}\n📝 О себе: ${data.about || 'не указано'}\n`;
-        } else {
-            message = `🎯 НОВАЯ ЗАЯВКА НА САЙТ\n\n👤 Имя: ${data.name}\n📞 Телефон: ${data.contact}\n📝 Описание: ${data.task || 'не указано'}\n`;
-        }
-        message += `\n⏰ ${new Date().toLocaleString('ru-RU')}`;
-        const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(message)}`;
-        const response = await fetch(url);
-        const result = await response.json();
-        if (result.ok) return { success: true };
-        else return { success: false, error: result.description || 'Ошибка отправки' };
-    } catch (error) { return { success: false, error: 'Ошибка сети' }; }
-}
-async function handleFormSubmit(form, isDeveloper = false) {
-    const submitBtn = form.querySelector('button[type="submit"]');
-    const originalText = submitBtn.innerHTML;
-    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправка...';
-    submitBtn.disabled = true;
-    try {
-        const formData = new FormData(form);
-        const data = Object.fromEntries(formData.entries());
-        if (!data.name || !data.contact) {
-            showNotification('❌ Заполните обязательные поля', true);
-            submitBtn.innerHTML = originalText;
-            submitBtn.disabled = false;
-            return;
-        }
-        const result = await sendToTelegram(data, isDeveloper);
-        if (result.success) {
-            showNotification(isDeveloper ? '✅ Заявка отправлена! Мы свяжемся с вами в течение 24 часов.' : '✅ Заявка отправлена! Мы свяжемся с вами в течение 2 часов.');
-            form.reset();
-        } else {
-            showNotification('✅ Заявка принята! Мы свяжемся с вами.', false);
-            form.reset();
-        }
-    } catch (error) {
-        showNotification('✅ Ваша заявка принята! Мы свяжемся с вами.', false);
-        form.reset();
-    } finally {
-        submitBtn.innerHTML = originalText;
-        submitBtn.disabled = false;
-    }
-}
-function initPortfolioFilters() {
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const portfolioItems = document.querySelectorAll('.portfolio-item');
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            filterBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            const filter = btn.getAttribute('data-filter');
-            portfolioItems.forEach(item => {
-                if (filter === 'all' || item.getAttribute('data-category') === filter) item.style.display = 'flex';
-                else item.style.display = 'none';
-            });
-        });
-    });
-}
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('🚀 OutDev Website Loaded');
-    showPage('home');
-    if (document.querySelector('.portfolio-item')) initPortfolioFilters();
-    document.addEventListener('click', function(e) {
-        if (e.target.closest('.nav-link')) {
-            e.preventDefault();
-            const link = e.target.closest('.nav-link');
-            const page = link.getAttribute('data-page');
-            const scrollTo = link.getAttribute('data-scroll');
-            if (page) {
-                showPage(page);
-                if (scrollTo) setTimeout(() => scrollToSection(scrollTo), 300);
-            }
-            const navLinks = document.getElementById('navLinks');
-            const menuBtn = document.getElementById('mobileMenuBtn');
-            if (navLinks && navLinks.classList.contains('active')) {
-                navLinks.classList.remove('active');
-                if (menuBtn) menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-            }
-        }
-        if (e.target.closest('#goToHome')) { e.preventDefault(); showPage('home'); }
-        if (e.target.closest('[data-scroll]') && !e.target.closest('.nav-link')) {
-            e.preventDefault();
-            const button = e.target.closest('[data-scroll]');
-            const sectionId = button.getAttribute('data-scroll');
-            scrollToSection(sectionId);
-        }
-        if (e.target.closest('.footer-links a')) {
-            e.preventDefault();
-            const link = e.target.closest('.footer-links a');
-            const page = link.getAttribute('data-page');
-            const scrollTo = link.getAttribute('data-scroll');
-            if (page) {
-                showPage(page);
-                if (scrollTo) setTimeout(() => scrollToSection(scrollTo), 300);
-            }
-        }
-    });
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const navLinks = document.getElementById('navLinks');
-    if (mobileMenuBtn && navLinks) {
-        mobileMenuBtn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            navLinks.classList.toggle('active');
-            this.innerHTML = navLinks.classList.contains('active') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
-        });
-        document.addEventListener('click', function(e) {
-            if (navLinks.classList.contains('active') && !navLinks.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
-                navLinks.classList.remove('active');
-                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-            }
-        });
-    }
-    const clientForm = document.getElementById('clientForm');
-    const devForm = document.getElementById('devForm');
-    if (clientForm) clientForm.addEventListener('submit', function(e) { e.preventDefault(); handleFormSubmit(this, false); });
-    if (devForm) devForm.addEventListener('submit', function(e) { e.preventDefault(); handleFormSubmit(this, true); });
-    document.querySelector('.footer-bottom p').innerHTML = document.querySelector('.footer-bottom p').innerHTML.replace('2024', new Date().getFullYear());
-});
-window.testTelegram = async function() {
-    console.log('🧪 Тестируем отправку в Telegram...');
-    const testData = { name: 'Тестовый пользователь', contact: '+375291234567', task: 'Тестовое описание проекта' };
-    const result = await sendToTelegram(testData, false);
-    if (result.success) showNotification('✅ Тест успешен! Сообщение отправлено в Telegram.');
-    else showNotification('❌ Ошибка: ' + result.error, true);
-};
-</script>
-</body>
-</html>
-
+                <div class="form-group"><label class="form-label required">📞 Телефон для связи</label><input type="tel
